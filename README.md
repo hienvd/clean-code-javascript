@@ -73,9 +73,9 @@ getUser();
 
 ### Sử dụng các tên có thể tìm kiếm được
 Chúng ta sẽ đọc code nhiều hơn là viết chúng. Điều quan trọng là code chúng ta
-viết có thể đọc được và tìm kiếm được. Bằng việc *không* đặt tên các biến mà có
-ngữ nghĩa để hiểu chương trình của chúng ta, chúng ta sẽ làm tổn thương người
-đọc code.
+viết có thể đọc được và tìm kiếm được. Việc đặt tên các biến *không* có ngữ
+nghĩa so với chương trình, chúng ta có thể sẽ làm người đọc code bị tổn thương
+tinh thần.
 Hãy làm cho các tên biến của bạn có thể tìm kiếm được. Các công cụ như
 [buddy.js](https://github.com/danielstjules/buddy.js) và
 [ESLint](https://github.com/eslint/eslint/blob/660e0918933e6e7fede26bc675a0763a6b357c94/docs/rules/no-magic-numbers.md)
