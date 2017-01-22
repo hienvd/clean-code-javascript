@@ -1,9 +1,10 @@
+Original Repository: [ryanmcdermott/clean-code-javascript](https://github.com/ryanmcdermott/clean-code-javascript)
 
 # clean-code-javascript
 
 ## Table of Contents
   1. [Introduction](#introduction)
-  2. [Variables](#variables)
+  2. [Biến](#biến)
   3. [Functions](#functions)
   4. [Objects and Data Structures](#objects-and-data-structures)
   5. [Classes](#classes)
@@ -41,82 +42,83 @@ shaped into its final form. Finally, we chisel away the imperfections when
 we review it with our peers. Don't beat yourself up for first drafts that need
 improvement. Beat up the code instead!
 
-## **Variables**
-### Use meaningful and pronounceable variable names
+## **Biến**
+### Sử dụng tên biến có nghĩa và dễ phát âm
 
-**Bad:**
+**Không tốt:**
 ```javascript
 const yyyymmdstr = moment().format('YYYY/MM/DD');
 ```
 
-**Good:**
+**Tốt:**
 ```javascript
 const currentDate = moment().format('YYYY/MM/DD');
 ```
-**[⬆ back to top](#table-of-contents)**
+**[⬆ về đầu trang](#table-of-contents)**
 
-### Use the same vocabulary for the same type of variable
+### Sử dụng cùng từ vựng cho cùng loại biến
 
-**Bad:**
+**Không tốt:**
 ```javascript
 getUserInfo();
 getClientData();
 getCustomerRecord();
 ```
 
-**Good:**
+**Tốt:**
 ```javascript
 getUser();
 ```
-**[⬆ back to top](#table-of-contents)**
+**[⬆ về đầu trang](#table-of-contents)**
 
-### Use searchable names
-We will read more code than we will ever write. It's important that the code we
-do write is readable and searchable. By *not* naming variables that end up
-being meaningful for understanding our program, we hurt our readers.
-Make your names searchable. Tools like
-[buddy.js](https://github.com/danielstjules/buddy.js) and
+### Sử dụng các tên có thể tìm kiếm được
+Chúng ta sẽ đọc code nhiều hơn là viết chúng. Điều quan trọng là code chúng ta
+viết có thể đọc được và tìm kiếm được. Bằng việc *không* đặt tên các biến mà có
+ngữ nghĩa để hiểu chương trình của chúng ta, chúng ta sẽ làm tổn thương người
+đọc code.
+Hãy làm cho các tên biến của bạn có thể tìm kiếm được. Các công cụ như
+[buddy.js](https://github.com/danielstjules/buddy.js) và
 [ESLint](https://github.com/eslint/eslint/blob/660e0918933e6e7fede26bc675a0763a6b357c94/docs/rules/no-magic-numbers.md)
-can help identify unnamed constants.
+có thể giúp nhận ra các hằng chưa được đặt tên.
 
-**Bad:**
+**Không tốt:**
 ```javascript
-// What the heck is 86400000 for?
+// 86400000 là cái quái gì thế?
 setTimeout(blastOff, 86400000);
 
 ```
 
-**Good:**
+**Tốt:**
 ```javascript
-// Declare them as capitalized `const` globals.
+// Khai báo chúng như một biến global.
 const MILLISECONDS_IN_A_DAY = 86400000;
 
 setTimeout(blastOff, MILLISECONDS_IN_A_DAY);
 
 ```
-**[⬆ back to top](#table-of-contents)**
+**[⬆ về đầu trang](#table-of-contents)**
 
-### Use explanatory variables
-**Bad:**
+### Sử dụng những biến có thể giải thích được
+**Không tốt:**
 ```javascript
 const address = 'One Infinite Loop, Cupertino 95014';
 const cityZipCodeRegex = /^[^,\\]+[,\\\s]+(.+?)\s*(\d{5})?$/;
 saveCityZipCode(address.match(cityZipCodeRegex)[1], address.match(cityZipCodeRegex)[2]);
 ```
 
-**Good:**
+**Tốt:**
 ```javascript
 const address = 'One Infinite Loop, Cupertino 95014';
 const cityZipCodeRegex = /^[^,\\]+[,\\\s]+(.+?)\s*(\d{5})?$/;
 const [, city, zipCode] = address.match(cityZipCodeRegex) || [];
 saveCityZipCode(city, zipCode);
 ```
-**[⬆ back to top](#table-of-contents)**
+**[⬆ về đầu trang](#table-of-contents)**
 
-### Avoid Mental Mapping
-Explicit is better than implicit.
+### Tránh hại não người khác
+Tường minh thì tốt hơn là ẩn.
 
-**Bad:**
+**Không tốt:**
 ```javascript
 const locations = ['Austin', 'New York', 'San Francisco'];
 locations.forEach((l) => {
@@ -125,12 +127,12 @@ locations.forEach((l) => {
   // ...
   // ...
   // ...
-  // Wait, what is `l` for again?
+  // Khoan, `l` làm cái gì vậy?
   dispatch(l);
 });
 ```
 
-**Good:**
+**Tốt:**
 ```javascript
 const locations = ['Austin', 'New York', 'San Francisco'];
 locations.forEach((location) => {
@@ -142,13 +144,13 @@ locations.forEach((location) => {
   dispatch(location);
 });
 ```
-**[⬆ back to top](#table-of-contents)**
+**[⬆ về đầu trang](#table-of-contents)**
 
-### Don't add unneeded context
-If your class/object name tells you something, don't repeat that in your
-variable name.
+### Đừng thêm những ngữ cảnh không cần thiết
+Nếu tên của lớp hay đối tượng của bạn đã nói lên điều gì đó rồi, đừng lặp
+lại điều đó trong tên biến nữa.
 
-**Bad:**
+**Không tốt:**
 ```javascript
 const Car = {
   carMake: 'Honda',
@@ -161,7 +163,7 @@ function paintCar(car) {
 }
 ```
 
-**Good:**
+**Tốt:**
 ```javascript
 const Car = {
   make: 'Honda',
@@ -173,11 +175,11 @@ function paintCar(car) {
   car.color = 'Red';
 }
 ```
-**[⬆ back to top](#table-of-contents)**
+**[⬆ về đầu trang](#table-of-contents)**
 
-### Use default arguments instead of short circuiting or conditionals
+### Sử dụng những tham số mặc định thay vì kiểm tra các điều kiện lòng vòng
 
-**Bad:**
+**Không tốt:**
 ```javascript
 function createMicrobrewery(name) {
   const breweryName = name || 'Hipster Brew Co.';
@@ -186,14 +188,14 @@ function createMicrobrewery(name) {
 
 ```
 
-**Good:**
+**Tốt:**
 ```javascript
 function createMicrobrewery(breweryName = 'Hipster Brew Co.') {
   // ...
 }
 
 ```
-**[⬆ back to top](#table-of-contents)**
+**[⬆ về đầu trang](#table-of-contents)**
 
 ## **Functions**
 ### Function arguments (2 or fewer ideally)
