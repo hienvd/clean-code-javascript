@@ -4,16 +4,16 @@ Original Repository: [ryanmcdermott/clean-code-javascript](https://github.com/ry
 
 ## Mục lục
   1. [Introduction](#introduction)
-  2. [Biến](#bien)
+  2. [Biến](#biến)
   3. [Functions](#functions)
-  4. [Đối tượng và Cấu trúc dữ liệu](#doi-tuong-va-cau-truc-du-lieu)
+  4. [Đối tượng và Cấu trúc dữ liệu](#đối-tượng-và-cấu-trúc-dữ-liệu)
   5. [Classes](#classes)
   6. [Testing](#testing)
   7. [Concurrency](#concurrency)
   8. [Error Handling](#error-handling)
   9. [Formatting](#formatting)
-  10. [Viết chú thích](#viet-chu-thich)
-  11. [Các ngôn ngữ khác](#cac-ngon-ngu-khac)
+  10. [Viết chú thích](#viết-chú-thích)
+  11. [Các ngôn ngữ khác](#các-ngôn-ngữ-khác)
 
 ## Introduction
 ![Humorous image of software quality estimation as a count of how many expletives
@@ -54,7 +54,7 @@ const yyyymmdstr = moment().format('YYYY/MM/DD');
 ```javascript
 const currentDate = moment().format('YYYY/MM/DD');
 ```
-**[⬆ về đầu trang](#muc-luc)**
+**[⬆ về đầu trang](#mục-lục)**
 
 ### Sử dụng cùng từ vựng cho cùng loại biến
 
@@ -69,7 +69,7 @@ getCustomerRecord();
 ```javascript
 getUser();
 ```
-**[⬆ về đầu trang](#muc-luc)**
+**[⬆ về đầu trang](#mục-lục)**
 
 ### Sử dụng các tên có thể tìm kiếm được
 Chúng ta sẽ đọc code nhiều hơn là viết chúng. Điều quan trọng là code chúng ta
@@ -96,7 +96,7 @@ const MILLISECONDS_IN_A_DAY = 86400000;
 setTimeout(blastOff, MILLISECONDS_IN_A_DAY);
 
 ```
-**[⬆ về đầu trang](#muc-luc)**
+**[⬆ về đầu trang](#mục-lục)**
 
 ### Sử dụng những biến có thể giải thích được
 **Không tốt:**
@@ -113,7 +113,7 @@ const cityZipCodeRegex = /^[^,\\]+[,\\\s]+(.+?)\s*(\d{5})?$/;
 const [, city, zipCode] = address.match(cityZipCodeRegex) || [];
 saveCityZipCode(city, zipCode);
 ```
-**[⬆ về đầu trang](#muc-luc)**
+**[⬆ về đầu trang](#mục-lục)**
 
 ### Tránh hại não người khác
 Tường minh thì tốt hơn là ẩn.
@@ -144,7 +144,7 @@ locations.forEach((location) => {
   dispatch(location);
 });
 ```
-**[⬆ về đầu trang](#muc-luc)**
+**[⬆ về đầu trang](#mục-lục)**
 
 ### Đừng thêm những ngữ cảnh không cần thiết
 Nếu tên của lớp hay đối tượng của bạn đã nói lên điều gì đó rồi, đừng lặp
@@ -175,7 +175,7 @@ function paintCar(car) {
   car.color = 'Red';
 }
 ```
-**[⬆ về đầu trang](#muc-luc)**
+**[⬆ về đầu trang](#mục-lục)**
 
 ### Sử dụng những tham số mặc định thay vì kiểm tra các điều kiện lòng vòng
 
@@ -195,7 +195,7 @@ function createMicrobrewery(breweryName = 'Hipster Brew Co.') {
 }
 
 ```
-**[⬆ về đầu trang](#muc-luc)**
+**[⬆ về đầu trang](#mục-lục)**
 
 ## **Functions**
 ### Function arguments (2 or fewer ideally)
@@ -246,7 +246,7 @@ createMenu({
   cancellable: true
 });
 ```
-**[⬆ back to top](#muc-luc)**
+**[⬆ back to top](#mục-lục)**
 
 
 ### Functions should do one thing
@@ -281,7 +281,7 @@ function isClientActive(client) {
   return clientRecord.isActive();
 }
 ```
-**[⬆ back to top](#muc-luc)**
+**[⬆ back to top](#mục-lục)**
 
 ### Function names should say what they do
 
@@ -306,7 +306,7 @@ function addMonthToDate(month, date) {
 const date = new Date();
 addMonthToDate(1, date);
 ```
-**[⬆ back to top](#muc-luc)**
+**[⬆ back to top](#mục-lục)**
 
 ### Functions should only be one level of abstraction
 When you have more than one level of abstraction your function is usually
@@ -374,7 +374,7 @@ function parseBetterJSAlternative(code) {
   });
 }
 ```
-**[⬆ back to top](#muc-luc)**
+**[⬆ back to top](#mục-lục)**
 
 ### Remove duplicate code
 Do your absolute best to avoid duplicate code. Duplicate code is bad because it
@@ -454,7 +454,7 @@ function showList(employees) {
   });
 }
 ```
-**[⬆ back to top](#muc-luc)**
+**[⬆ back to top](#mục-lục)**
 
 ### Set default objects with Object.assign
 
@@ -500,7 +500,7 @@ function createMenu(config) {
 
 createMenu(menuConfig);
 ```
-**[⬆ back to top](#muc-luc)**
+**[⬆ back to top](#mục-lục)**
 
 
 ### Don't use flags as function parameters
@@ -527,7 +527,7 @@ function createTempFile(name) {
   createFile(`./temp/${name}`);
 }
 ```
-**[⬆ back to top](#muc-luc)**
+**[⬆ back to top](#mục-lục)**
 
 ### Avoid Side Effects (part 1)
 A function produces a side effect if it does anything other than take a value in
@@ -572,7 +572,7 @@ const newName = splitIntoFirstAndLastName(name);
 console.log(name); // 'Ryan McDermott';
 console.log(newName); // ['Ryan', 'McDermott'];
 ```
-**[⬆ back to top](#muc-luc)**
+**[⬆ back to top](#mục-lục)**
 
 ### Avoid Side Effects (part 2)
 In JavaScript, primitives are passed by value and objects/arrays are passed by
@@ -621,7 +621,7 @@ const addItemToCart = (cart, item) => {
 };
 ```
 
-**[⬆ back to top](#muc-luc)**
+**[⬆ back to top](#mục-lục)**
 
 ### Don't write to global functions
 Polluting globals is a bad practice in JavaScript because you could clash with another
@@ -651,7 +651,7 @@ class SuperArray extends Array {
   }
 }
 ```
-**[⬆ back to top](#muc-luc)**
+**[⬆ back to top](#mục-lục)**
 
 ### Favor functional programming over imperative programming
 JavaScript isn't a functional language in the way that Haskell is, but it has
@@ -707,7 +707,7 @@ const totalOutput = programmerOutput
   .map((programmer) => programmer.linesOfCode)
   .reduce((acc, linesOfCode) => acc + linesOfCode, INITIAL_VALUE);
 ```
-**[⬆ back to top](#muc-luc)**
+**[⬆ back to top](#mục-lục)**
 
 ### Encapsulate conditionals
 
@@ -728,7 +728,7 @@ if (shouldShowSpinner(fsmInstance, listNodeInstance)) {
   // ...
 }
 ```
-**[⬆ back to top](#muc-luc)**
+**[⬆ back to top](#mục-lục)**
 
 ### Avoid negative conditionals
 
@@ -753,7 +753,7 @@ if (isDOMNodePresent(node)) {
   // ...
 }
 ```
-**[⬆ back to top](#muc-luc)**
+**[⬆ back to top](#mục-lục)**
 
 ### Avoid conditionals
 This seems like an impossible task. Upon first hearing this, most people say,
@@ -809,7 +809,7 @@ class Cessna extends Airplane {
   }
 }
 ```
-**[⬆ back to top](#muc-luc)**
+**[⬆ back to top](#mục-lục)**
 
 ### Avoid type-checking (part 1)
 JavaScript is untyped, which means your functions can take any type of argument.
@@ -834,7 +834,7 @@ function travelToTexas(vehicle) {
   vehicle.move(this.currentLocation, new Location('texas'));
 }
 ```
-**[⬆ back to top](#muc-luc)**
+**[⬆ back to top](#mục-lục)**
 
 ### Avoid type-checking (part 2)
 If you are working with basic primitive values like strings, integers, and arrays,
@@ -865,7 +865,7 @@ function combine(val1, val2) {
   return val1 + val2;
 }
 ```
-**[⬆ back to top](#muc-luc)**
+**[⬆ back to top](#mục-lục)**
 
 ### Don't over-optimize
 Modern browsers do a lot of optimization under-the-hood at runtime. A lot of
@@ -890,7 +890,7 @@ for (let i = 0; i < list.length; i++) {
   // ...
 }
 ```
-**[⬆ back to top](#muc-luc)**
+**[⬆ back to top](#mục-lục)**
 
 ### Remove dead code
 Dead code is just as bad as duplicate code. There's no reason to keep it in
@@ -921,7 +921,7 @@ function newRequestModule(url) {
 const req = newRequestModule;
 inventoryTracker('apples', req, 'www.inventory-awesome.io');
 ```
-**[⬆ back to top](#muc-luc)**
+**[⬆ back to top](#mục-lục)**
 
 ## **Đối tượng và Cấu trúc dữ liệu**
 ### Sử dụng getter và setter
@@ -986,7 +986,7 @@ bankAccount.balance -= shoesPrice;
 let balance = bankAccount.balance;
 
 ```
-**[⬆ về đầu trang](#muc-luc)**
+**[⬆ về đầu trang](#mục-lục)**
 
 
 ### Làm cho các đối tượng có thành viên private
@@ -1022,7 +1022,7 @@ console.log(`Employee name: ${employee.getName()}`); // Employee name: John Doe
 delete employee.name;
 console.log(`Employee name: ${employee.getName()}`); // Employee name: John Doe
 ```
-**[⬆ về đầu trang](#muc-luc)**
+**[⬆ về đầu trang](#mục-lục)**
 
 
 ## **Classes**
@@ -1081,7 +1081,7 @@ class UserSettings {
   }
 }
 ```
-**[⬆ back to top](#muc-luc)**
+**[⬆ back to top](#mục-lục)**
 
 ### Open/Closed Principle (OCP)
 As stated by Bertrand Meyer, "software entities (classes, modules, functions,
@@ -1168,7 +1168,7 @@ class HttpRequester {
   }
 }
 ```
-**[⬆ back to top](#muc-luc)**
+**[⬆ back to top](#mục-lục)**
 
 
 ### Liskov Substitution Principle (LSP)
@@ -1305,7 +1305,7 @@ function renderLargeShapes(shapes) {
 const shapes = [new Rectangle(), new Rectangle(), new Square()];
 renderLargeShapes(shapes);
 ```
-**[⬆ back to top](#muc-luc)**
+**[⬆ back to top](#mục-lục)**
 
 ### Interface Segregation Principle (ISP)
 JavaScript doesn't have interfaces so this principle doesn't apply as strictly
@@ -1379,7 +1379,7 @@ const $ = new DOMTraverser({
   }
 });
 ```
-**[⬆ back to top](#muc-luc)**
+**[⬆ back to top](#mục-lục)**
 
 ### Dependency Inversion Principle (DIP)
 This principle states two essential things:
@@ -1474,7 +1474,7 @@ class InventoryRequesterV2 {
 const inventoryTracker = new InventoryTracker(['apples', 'bananas'], new InventoryRequesterV2());
 inventoryTracker.requestItems();
 ```
-**[⬆ back to top](#muc-luc)**
+**[⬆ back to top](#mục-lục)**
 
 ### Prefer ES2015/ES6 classes over ES5 plain functions
 It's very difficult to get readable class inheritance, construction, and method
@@ -1549,7 +1549,7 @@ class Human extends Mammal {
   speak() { /* ... */ }
 }
 ```
-**[⬆ back to top](#muc-luc)**
+**[⬆ back to top](#mục-lục)**
 
 
 ### Use method chaining
@@ -1632,7 +1632,7 @@ const car = new Car()
   .setModel('F-150')
   .save();
 ```
-**[⬆ back to top](#muc-luc)**
+**[⬆ back to top](#mục-lục)**
 
 ### Prefer composition over inheritance
 As stated famously in [*Design Patterns*](https://en.wikipedia.org/wiki/Design_Patterns) by the Gang of Four,
@@ -1698,7 +1698,7 @@ class Employee {
   // ...
 }
 ```
-**[⬆ back to top](#muc-luc)**
+**[⬆ back to top](#mục-lục)**
 
 ## **Testing**
 Testing thì quan trọng hơn shipping. Nếu bạn không có test hoặc không đủ,
@@ -1765,7 +1765,7 @@ describe('MakeMomentJSGreatAgain', () => {
   });
 });
 ```
-**[⬆ về đầu trang](#muc-luc)**
+**[⬆ về đầu trang](#mục-lục)**
 
 ## **Concurrency**
 ### Use Promises, not callbacks
@@ -1804,7 +1804,7 @@ require('request-promise').get('https://en.wikipedia.org/wiki/Robert_Cecil_Marti
   });
 
 ```
-**[⬆ back to top](#muc-luc)**
+**[⬆ back to top](#mục-lục)**
 
 ### Async/Await are even cleaner than Promises
 Promises are a very clean alternative to callbacks, but ES2017/ES8 brings async and await
@@ -1840,7 +1840,7 @@ async function getCleanCodeArticle() {
   }
 }
 ```
-**[⬆ back to top](#muc-luc)**
+**[⬆ back to top](#mục-lục)**
 
 
 ## **Error Handling**
@@ -1913,7 +1913,7 @@ getdata()
 });
 ```
 
-**[⬆ back to top](#muc-luc)**
+**[⬆ back to top](#mục-lục)**
 
 
 ## **Formatting**
@@ -1960,7 +1960,7 @@ function restoreDatabase() {}
 class Animal {}
 class Alpaca {}
 ```
-**[⬆ back to top](#muc-luc)**
+**[⬆ back to top](#mục-lục)**
 
 
 ### Function callers and callees should be close
@@ -2046,7 +2046,7 @@ const review = new PerformanceReview(employee);
 review.perfReview();
 ```
 
-**[⬆ back to top](#muc-luc)**
+**[⬆ back to top](#mục-lục)**
 
 ## **Viết chú thích**
 ### Chỉ nên viết chú thích cho những thứ có logic phức tạp.
@@ -2091,7 +2091,7 @@ function hashIt(data) {
 }
 
 ```
-**[⬆ về đầu trang](#muc-luc)**
+**[⬆ về đầu trang](#mục-lục)**
 
 ### Đừng giữ lại những đoạn code bị chú thích trong codebase của bạn.
 Những công cụ quản lí phiên bản sinh ra để làm nhiệm vụ của chúng.
@@ -2109,7 +2109,7 @@ doStuff();
 ```javascript
 doStuff();
 ```
-**[⬆ về đầu trang](#muc-luc)**
+**[⬆ về đầu trang](#mục-lục)**
 
 ### Đừng viết các chú thích nhật ký.
 Hãy nhớ, sử dụng công cụ quản lí phiên bản! Chúng ta không cần những đoạn code
@@ -2135,7 +2135,7 @@ function combine(a, b) {
   return a + b;
 }
 ```
-**[⬆ về đầu trang](#muc-luc)**
+**[⬆ về đầu trang](#mục-lục)**
 
 ### Tránh những đánh dấu vị trí
 Chúng thường xuyên làm nhiễu code. Hãy để những tên hàm, biến cùng với các
@@ -2170,7 +2170,7 @@ const actions = function() {
   // ...
 };
 ```
-**[⬆ về đầu trang](#muc-luc)**
+**[⬆ về đầu trang](#mục-lục)**
 
 ## Các ngôn ngữ khác
 
@@ -2181,4 +2181,4 @@ Tài liệu này cũng có sẵn ở các ngôn ngữ sau:
   - ![de](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Germany.png) **German**: [marcbruederlin/clean-code-javascript](https://github.com/marcbruederlin/clean-code-javascript)
   - ![kr](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/South-Korea.png) **Korean**: [qkraudghgh/clean-code-javascript-ko](https://github.com/qkraudghgh/clean-code-javascript-ko)
 
-**[⬆ về đầu trang](#muc-luc)**
+**[⬆ về đầu trang](#mục-lục)**
