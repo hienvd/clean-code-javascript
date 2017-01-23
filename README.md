@@ -924,8 +924,8 @@ inventoryTracker('apples', req, 'www.inventory-awesome.io');
 **[⬆ back to top](#table-of-contents)**
 
 ## **Đối tượng và Cấu trúc dữ liệu**
-### Sử dụng getters và setters
-JavaScript không có interfaces hoặc kiểu vì vậy rất khó để thực hiện mô hình này,
+### Sử dụng getter và setter
+JavaScript không có interface hoặc kiểu vì vậy rất khó để thực hiện mô hình này,
 bởi vì chúng ta không có các từ khoá như `public` và `private`. Vì vậy, sử dụng
 getters và setters để truy cập dữ liệu trên các đối tượng thì tốt hơn là chỉ đơn
 giản tìm kiếm một thuộc tính trên một đối tượng. Bạn có thể hỏi "Tại sao?".
