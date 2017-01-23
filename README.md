@@ -6,7 +6,7 @@ Original Repository: [ryanmcdermott/clean-code-javascript](https://github.com/ry
   1. [Introduction](#introduction)
   2. [Biến](#biến)
   3. [Functions](#functions)
-  4. [Objects and Data Structures](#objects-and-data-structures)
+  4. [Đối tượng và Cấu trúc dữ liệu](#đối-tượng-và-cấu-trúc-dữ-liệu)
   5. [Classes](#classes)
   6. [Testing](#testing)
   7. [Concurrency](#concurrency)
@@ -923,25 +923,24 @@ inventoryTracker('apples', req, 'www.inventory-awesome.io');
 ```
 **[⬆ back to top](#table-of-contents)**
 
-## **Objects and Data Structures**
-### Use getters and setters
-JavaScript doesn't have interfaces or types so it is very hard to enforce this
-pattern, because we don't have keywords like `public` and `private`. As it is,
-using getters and setters to access data on objects is far better than simply
-looking for a property on an object. "Why?" you might ask. Well, here's an
-unorganized list of reasons why:
+## **Đối tượng và Cấu trúc dữ liệu**
+### Sử dụng getter và setter
+JavaScript không có interface hoặc kiểu vì vậy rất khó để thực hiện mô hình này,
+bởi vì chúng ta không có các từ khoá như `public` và `private`. Vì vậy, sử dụng
+getters và setters để truy cập dữ liệu trên các đối tượng thì tốt hơn là chỉ đơn
+giản tìm kiếm một thuộc tính trên một đối tượng. Bạn có thể hỏi "Tại sao?".
+Đây là một danh sách các lí do tại sao:
 
-* When you want to do more beyond getting an object property, you don't have
-to look up and change every accessor in your codebase.
-* Makes adding validation simple when doing a `set`.
-* Encapsulates the internal representation.
-* Easy to add logging and error handling when getting and setting.
-* Inheriting this class, you can override default functionality.
-* You can lazy load your object's properties, let's say getting it from a
-server.
+* Khi bạn muốn thực hiện nhiều hơn việc lấy một thuộc tính của đối tượng, bạn không
+cần phải tìm kiếm và thay đổi mỗi accessor trong codebase của bạn.
+* Làm cho việc thêm các validation đơn giản khi thực hiện trên một `tập hợp`.
+* Đóng gói các biểu diễn nội bộ.
+* Dễ dàng thêm log và xử lí lỗi khi getting và setting.
+* Kế thừa lớp này, bạn có thể override những hàm mặc định.
+* Bạn có thể lazy load các thuộc tính của một đối tượng, lấy nó từ server.
 
 
-**Bad:**
+**Không tốt:**
 ```javascript
 class BankAccount {
   constructor() {
@@ -955,14 +954,14 @@ const bankAccount = new BankAccount();
 bankAccount.balance -= 100;
 ```
 
-**Good:**
+**Tốt:**
 ```javascript
 class BankAccount {
   constructor(balance = 1000) {
     this._balance = balance;
   }
 
-  // It doesn't have to be prefixed with `get` or `set` to be a getter/setter
+  // Không cần phải thêm tiền tố `get` hay `set` để trở thành một getter hay setter
   set balance(amount) {
     if (this.verifyIfAmountCanBeSetted(amount)) {
       this._balance = amount;
@@ -987,13 +986,13 @@ bankAccount.balance -= shoesPrice;
 let balance = bankAccount.balance;
 
 ```
-**[⬆ back to top](#table-of-contents)**
+**[⬆ về đầu trang](#table-of-contents)**
 
 
-### Make objects have private members
-This can be accomplished through closures (for ES5 and below).
+### Làm cho các đối tượng có thành viên private
+Điều này có thể được thực hiện thông qua closures (cho ES5 và cũ hơn).
 
-**Bad:**
+**Không tốt:**
 ```javascript
 
 const Employee = function(name) {
@@ -1010,7 +1009,7 @@ delete employee.name;
 console.log(`Employee name: ${employee.getName()}`); // Employee name: undefined
 ```
 
-**Good:**
+**Tốt:**
 ```javascript
 const Employee = function (name) {
   this.getName = function getName() {
@@ -1023,7 +1022,7 @@ console.log(`Employee name: ${employee.getName()}`); // Employee name: John Doe
 delete employee.name;
 console.log(`Employee name: ${employee.getName()}`); // Employee name: John Doe
 ```
-**[⬆ back to top](#table-of-contents)**
+**[⬆ về đầu trang](#table-of-contents)**
 
 
 ## **Classes**
