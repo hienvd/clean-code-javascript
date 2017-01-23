@@ -1701,25 +1701,24 @@ class Employee {
 **[⬆ back to top](#table-of-contents)**
 
 ## **Testing**
-Testing is more important than shipping. If you have no tests or an
-inadequate amount, then every time you ship code you won't be sure that you
-didn't break anything. Deciding on what constitutes an adequate amount is up
-to your team, but having 100% coverage (all statements and branches) is how
-you achieve very high confidence and developer peace of mind. This means that
-in addition to having a great testing framework, you also need to use a
-[good coverage tool](http://gotwarlost.github.io/istanbul/).
+Testing thì quan trọng hơn shipping. Nếu bạn không có test hoặc không đủ,
+thì mỗi lần ship code bạn sẽ không chắc là mình có làm hư hại thứ gì không.
+Việc quyết định những gì để tạo thành số lượng test đủ là do team của bạn,
+nhưng việc có 100% độ bao phủ (tất cả các câu lệnh và rẽ nhánh) là cách để
+bạn đạt được sự tự tin cao. Điều này có nghĩa ngoài việc có được một framework
+để test tốt, bạn cũng cần sử dụng một [công cụ bao phủ tốt](http://gotwarlost.github.io/istanbul/).
 
-There's no excuse to not write tests. There's [plenty of good JS test frameworks]
-(http://jstherightway.org/#testing-tools), so find one that your team prefers.
-When you find one that works for your team, then aim to always write tests
-for every new feature/module you introduce. If your preferred method is
-Test Driven Development (TDD), that is great, but the main point is to just
-make sure you are reaching your coverage goals before launching any feature,
-or refactoring an existing one.
+Không có lí do gì để không viết test. Có [rất nhiều framework test JS tốt](http://jstherightway.org/#testing-tools),
+vì thế hãy tìm một framework mà team bạn thích. Khi đã tìm được một cái thích
+hợp với team của mình, hãy đặt mục tiêu để luôn luôn viết test cho mỗi tính
+năng hoặc module mới của bạn. Nếu phương pháp test ưa thích của bạn là Test
+Driven Development (TDD), điều đó thật tuyệt, nhưng điểm quan trọng là phải
+chắc chắn bạn đạt được mục tiêu về độ bao phủ trước khi launch một tính năng
+hoặc refactor một tính năng cũ nào đó.
 
-### Single concept per test
+### Một khái niệm duy nhất cho mỗi đơn vị test
 
-**Bad:**
+**Không tốt:**
 ```javascript
 const assert = require('assert');
 
@@ -1742,7 +1741,7 @@ describe('MakeMomentJSGreatAgain', () => {
 });
 ```
 
-**Good:**
+**Tốt:**
 ```javascript
 const assert = require('assert');
 
@@ -1766,7 +1765,7 @@ describe('MakeMomentJSGreatAgain', () => {
   });
 });
 ```
-**[⬆ back to top](#table-of-contents)**
+**[⬆ về đầu trang](#table-of-contents)**
 
 ## **Concurrency**
 ### Use Promises, not callbacks
