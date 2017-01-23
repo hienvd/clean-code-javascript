@@ -2,7 +2,7 @@ Original Repository: [ryanmcdermott/clean-code-javascript](https://github.com/ry
 
 # clean-code-javascript
 
-## Table of Contents
+## Mục lục
   1. [Introduction](#introduction)
   2. [Biến](#biến)
   3. [Functions](#functions)
@@ -12,8 +12,8 @@ Original Repository: [ryanmcdermott/clean-code-javascript](https://github.com/ry
   7. [Concurrency](#concurrency)
   8. [Error Handling](#error-handling)
   9. [Formatting](#formatting)
-  10. [Comments](#comments)
-  11. [Translation](#translation)
+  10. [Viết chú thích](#viết-chú-thích)
+  11. [Các ngôn ngữ khác](#các-ngôn-ngữ-khác)
 
 ## Introduction
 ![Humorous image of software quality estimation as a count of how many expletives
@@ -2048,32 +2048,33 @@ review.perfReview();
 
 **[⬆ back to top](#table-of-contents)**
 
-## **Comments**
-### Only comment things that have business logic complexity.
-Comments are an apology, not a requirement. Good code *mostly* documents itself.
+## **Viết chú thích**
+### Chỉ nên viết chú thích cho những thứ có logic phức tạp.
+Các chú thích thường là lời xin lỗi, chứ không phải là yêu cầu.
+Những đoạn code tốt thì *đa số* tự nó đã là tài liệu rồi.
 
-**Bad:**
+**Không tốt:**
 ```javascript
 function hashIt(data) {
-  // The hash
+  // Khai báo hash
   let hash = 0;
 
-  // Length of string
+  // Lấy chiều dài của chuỗi
   const length = data.length;
 
-  // Loop through every character in data
+  // Lặp qua mỗi kí tự
   for (let i = 0; i < length; i++) {
-    // Get character code.
+    // Lấy mã của kí tự
     const char = data.charCodeAt(i);
-    // Make the hash
+    // Gán giá trị cho hash
     hash = ((hash << 5) - hash) + char;
-    // Convert to 32-bit integer
+    // Chuyển thành định dạng số nguyên 32 bit
     hash &= hash;
   }
 }
 ```
 
-**Good:**
+**Tốt:**
 ```javascript
 
 function hashIt(data) {
@@ -2084,18 +2085,19 @@ function hashIt(data) {
     const char = data.charCodeAt(i);
     hash = ((hash << 5) - hash) + char;
 
-    // Convert to 32-bit integer
+    // Chuyển thành định dạng số nguyên 32 bit
     hash &= hash;
   }
 }
 
 ```
-**[⬆ back to top](#table-of-contents)**
+**[⬆ về đầu trang](#table-of-contents)**
 
-### Don't leave commented out code in your codebase
-Version control exists for a reason. Leave old code in your history.
+### Đừng giữ lại những đoạn code bị chú thích trong codebase của bạn.
+Những công cụ quản lí phiên bản sinh ra để làm nhiệm vụ của chúng.
+Hãy để code cũ của bạn nằm lại trong dĩ vãng đi.
 
-**Bad:**
+**Không tốt:**
 ```javascript
 doStuff();
 // doOtherStuff();
@@ -2103,17 +2105,18 @@ doStuff();
 // doSoMuchStuff();
 ```
 
-**Good:**
+**Tốt:**
 ```javascript
 doStuff();
 ```
-**[⬆ back to top](#table-of-contents)**
+**[⬆ về đầu trang](#table-of-contents)**
 
-### Don't have journal comments
-Remember, use version control! There's no need for dead code, commented code,
-and especially journal comments. Use `git log` to get history!
+### Đừng viết các chú thích nhật ký.
+Hãy nhớ, sử dụng công cụ quản lí phiên bản! Chúng ta không cần những đoạn code
+vô dụng, bị chú thích và đặc biệt là những chú thích dạng nhật ký...
+Sử dụng `git log` để xem lịch sử được mà!
 
-**Bad:**
+**Không tốt:**
 ```javascript
 /**
  * 2016-12-20: Removed monads, didn't understand them (RM)
@@ -2126,19 +2129,19 @@ function combine(a, b) {
 }
 ```
 
-**Good:**
+**Tốt:**
 ```javascript
 function combine(a, b) {
   return a + b;
 }
 ```
-**[⬆ back to top](#table-of-contents)**
+**[⬆ về đầu trang](#table-of-contents)**
 
-### Avoid positional markers
-They usually just add noise. Let the functions and variable names along with the
-proper indentation and formatting give the visual structure to your code.
+### Tránh những đánh dấu vị trí
+Chúng thường xuyên làm nhiễu code. Hãy để những tên hàm, biến cùng với các
+định dạng thích hợp tự tạo thành cấu trúc trực quan cho code của bạn.
 
-**Bad:**
+**Không tốt:**
 ```javascript
 ////////////////////////////////////////////////////////////////////////////////
 // Scope Model Instantiation
@@ -2156,7 +2159,7 @@ const actions = function() {
 };
 ```
 
-**Good:**
+**Tốt:**
 ```javascript
 $scope.model = {
   menu: 'foo',
@@ -2167,15 +2170,15 @@ const actions = function() {
   // ...
 };
 ```
-**[⬆ back to top](#table-of-contents)**
+**[⬆ về đầu trang](#table-of-contents)**
 
-## Translation
+## Các ngôn ngữ khác
 
-This is also available in other languages:
+Tài liệu này cũng có sẵn ở các ngôn ngữ sau:
 
   - ![br](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Brazil.png) **Brazilian Portuguese**: [fesnt/clean-code-javascript](https://github.com/fesnt/clean-code-javascript)
   - ![cn](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/China.png) **Chinese**: [alivebao/clean-code-js](https://github.com/alivebao/clean-code-js)
   - ![de](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Germany.png) **German**: [marcbruederlin/clean-code-javascript](https://github.com/marcbruederlin/clean-code-javascript)
   - ![kr](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/South-Korea.png) **Korean**: [qkraudghgh/clean-code-javascript-ko](https://github.com/qkraudghgh/clean-code-javascript-ko)
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ về đầu trang](#table-of-contents)**
