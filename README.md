@@ -1715,9 +1715,9 @@ hợp với team của mình, hãy đặt mục tiêu để luôn luôn viết t
 năng hoặc module mới của bạn. Nếu phương pháp test ưa thích của bạn là Test
 Driven Development (TDD), điều đó thật tuyệt, nhưng điểm quan trọng là phải
 chắc chắn bạn đạt được mục tiêu về độ bao phủ trước khi launch một tính năng
-nào, hoặc refactor tính năng cũ nào.
+hoặc refactor một tính năng cũ nào đó.
 
-### Một khái niệm duy nhất cho mỗi test
+### Một khái niệm duy nhất cho mỗi đơn vị test
 
 **Không tốt:**
 ```javascript
