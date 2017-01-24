@@ -9,7 +9,7 @@ Original Repository: [ryanmcdermott/clean-code-javascript](https://github.com/ry
   4. [Đối tượng và Cấu trúc dữ liệu](#đối-tượng-và-cấu-trúc-dữ-liệu)
   5. [Classes](#classes)
   6. [Testing](#testing)
-  7. [Concurrency](#concurrency)
+  7. [Xử lí đồng thời](#xử-lí-đồng-thời)
   8. [Xử lí lỗi](#xử-lí-lỗi)
   9. [Định dạng](#định-dạng)
   10. [Viết chú thích](#viết-chú-thích)
@@ -1767,12 +1767,12 @@ describe('MakeMomentJSGreatAgain', () => {
 ```
 **[⬆ về đầu trang](#mục-lục)**
 
-## **Concurrency**
-### Use Promises, not callbacks
-Callbacks aren't clean, and they cause excessive amounts of nesting. With ES2015/ES6,
-Promises are a built-in global type. Use them!
+## **Xử lí đồng thời**
+### Hãy dùng Promise, đừng dùng callback
+Callback thì không được 'sạch sẽ' cho lắm, chúng gây ra quá nhiều đoạn code lồng nhau
+(callback hell). Từ ES2015/ES6, Promise đã được đưa vào Javascript. Hãy sử dụng chúng!
 
-**Bad:**
+**Không tốt:**
 ```javascript
 require('request').get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin', (requestErr, response) => {
   if (requestErr) {
@@ -1790,7 +1790,7 @@ require('request').get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin', (req
 
 ```
 
-**Good:**
+**Tốt:**
 ```javascript
 require('request-promise').get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin')
   .then((response) => {
@@ -1804,16 +1804,16 @@ require('request-promise').get('https://en.wikipedia.org/wiki/Robert_Cecil_Marti
   });
 
 ```
-**[⬆ back to top](#mục-lục)**
+**[⬆ về đầu trang](#mục-lục)**
 
-### Async/Await are even cleaner than Promises
-Promises are a very clean alternative to callbacks, but ES2017/ES8 brings async and await
-which offer an even cleaner solution. All you need is a function that is prefixed
-in an `async` keyword, and then you can write your logic imperatively without
-a `then` chain of functions. Use this if you can take advantage of ES2017/ES8 features
-today!
+### Async/Await thì 'sạch sẽ' hơn Promise
+Promise là một sự thay thế 'sạch sẽ' cho callback, nhưng ES2017/ES8 giới thiệu
+async và await, đó thậm chí còn là một giải pháp tốt hơn Promise nữa. Những gì
+bạn cần phải làm là một hàm có tiếp đầu ngữ là từ khoá `async`, và bạn có thể viết
+các lệnh logic mà không cần một chuỗi `then` của các hàm. Hãy sử dụng điều này nếu
+bạn có thể tận dụng các tính năng của ES2017/ES8 ngay hôm nay!
 
-**Bad:**
+**Không tốt:**
 ```javascript
 require('request-promise').get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin')
   .then((response) => {
@@ -1828,7 +1828,7 @@ require('request-promise').get('https://en.wikipedia.org/wiki/Robert_Cecil_Marti
 
 ```
 
-**Good:**
+**Tốt:**
 ```javascript
 async function getCleanCodeArticle() {
   try {
@@ -1840,7 +1840,7 @@ async function getCleanCodeArticle() {
   }
 }
 ```
-**[⬆ back to top](#mục-lục)**
+**[⬆ về đầu trang](#mục-lục)**
 
 
 ## **Xử lí lỗi**
@@ -1971,7 +1971,7 @@ file. Lí tưởng là, hãy giữ cho hàm gọi ở trên hàm được gọi.
 đọc code từ trên xuống, giống như đọc báo vậy. Do đó, hãy làm cho code của chúng
 ta cũng được đọc theo cách đó.
 
-**Bad:**
+**Không tốt:**
 ```javascript
 class PerformanceReview {
   constructor(employee) {
@@ -2010,7 +2010,7 @@ const review = new PerformanceReview(user);
 review.perfReview();
 ```
 
-**Good:**
+**Tốt:**
 ```javascript
 class PerformanceReview {
   constructor(employee) {
@@ -2049,7 +2049,7 @@ const review = new PerformanceReview(employee);
 review.perfReview();
 ```
 
-**[⬆ về trang chủ](#mục-lục)**
+**[⬆ về đầu trang](#mục-lục)**
 
 ## **Viết chú thích**
 ### Chỉ nên viết chú thích cho những thứ có logic phức tạp.
