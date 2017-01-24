@@ -5,7 +5,7 @@ Original Repository: [ryanmcdermott/clean-code-javascript](https://github.com/ry
 ## Mục lục
   1. [Introduction](#introduction)
   2. [Biến](#biến)
-  3. [Functions](#functions)
+  3. [Hàm](#functions)
   4. [Đối tượng và Cấu trúc dữ liệu](#đối-tượng-và-cấu-trúc-dữ-liệu)
   5. [Classes](#classes)
   6. [Testing](#testing)
@@ -197,34 +197,27 @@ function createMicrobrewery(breweryName = 'Hipster Brew Co.') {
 ```
 **[⬆ về đầu trang](#mục-lục)**
 
-## **Functions**
-### Function arguments (2 or fewer ideally)
-Limiting the amount of function parameters is incredibly important because it
-makes testing your function easier. Having more than three leads to a
-combinatorial explosion where you have to test tons of different cases with
-each separate argument.
+## **Hàm**
+### Đối số của hàm (lý tưởng là ít hơn hoặc bằng 2)
+Giới hạn số lượng param của hàm là một điều cực kì quan trọng bởi vì nó làm cho hàm của bạn trở nên dễ dàng hơn để test. Trường hợp có nhiều hơn 3 params có thể dẫn đến việc bạn phải test hàng tấn test case khác nhau với những đối số riêng biệt.
 
-One or two arguments is the ideal case, and three should be avoided if possible.
-Anything more than that should be consolidated. Usually, if you have
+1 hoặc 2 đối số là trường hợp lý tưởng, còn trường hợp 3 đối số thì có thể sử dụng được nhưng chúng ta nên tránh đi là tốt hơn. Những trường hợp khác (từ 3 params trở lên) thì phải cân nhắc thật kỹ lưỡng để sử dụng. Thông thường nếu bạn có nhiều hơn 2 đối số params thì function của bạn thường phải thực hiện nhiều hơn. Trong trường hợp ngược lại, phần lớn thời gian 
+#TODO
 more than two arguments then your function is trying to do too much. In cases
 where it's not, most of the time a higher-level object will suffice as an
 argument.
+#ENDTODO
 
-Since JavaScript allows you to make objects on the fly, without a lot of class
-boilerplate, you can use an object if you are finding yourself needing a
-lot of arguments.
+Ở Javascript cho phép bạn tạo một object với nhiều đối số, mà không có một class nào có sẵn, bạn có thể sử dụng một object nếu bạn đang tìm kiếm một phương pháp khác thay thế cho việc truyền nhiều đối số.
 
-To make it obvious what properties the function expects, you can use the es6
-destructuring syntax. This has a few advantages:
+Để những thuộc tính của chức năng dự kiến trở nên rõ ràng, bạn có thể sử dụng các cấu trúc của ES6 destructuring. Dưới đây là một số ưu điểm:
 
-1. When someone looks at the function signature, it's immediately clear what
-properties are being used.
+1. Khi một ai đó nhìn vào chức năng, những thuộc tính sẽ trở nên rõ ràng ngay lập tức.
 2. Destructuring also clones the specified primitive values of the argument
 object passed into the function. This can help prevent side effects. Note:
 objects and arrays that are destructured from the argument object are NOT
 cloned.
-3. Linters can warn you about unused properties, which would be impossible
-without destructuring.
+3. Linter có thể sẽ cảnh báo bạn về những thuộc tính không sử dụng, do đó nó sẽ phải có destructuring 
 
 **Bad:**
 ```javascript
@@ -246,15 +239,11 @@ createMenu({
   cancellable: true
 });
 ```
-**[⬆ back to top](#mục-lục)**
+**[⬆ Về đầu trang](#mục-lục)**
 
 
-### Functions should do one thing
-This is by far the most important rule in software engineering. When functions
-do more than one thing, they are harder to compose, test, and reason about.
-When you can isolate a function to just one action, they can be refactored
-easily and your code will read much cleaner. If you take nothing else away from
-this guide other than this, you'll be ahead of many developers.
+### Chức năng chỉ nên giải quyết một vấn đề
+Đây là một quy định quan trọng của kỹ thuật phần mềm. Khi một hàm thực hiện nhiều hơn 1 vấn đề, chúng sẽ trở nên khó khăn hơn để viết code, test, và .... Khi bạn có thể tách riêng biệt một chức năng cho một action thì chúng có thể được refactor dễ dàng và code của bạn sẽ "sạch sẽ", dễ hiểu hơn. Nếu bạn chỉ cần làm theo hướng dẫn này thôi mà không cần làm gì khác thì bạn cũng đã giỏi hơn nhiều developer khác rồi. 
 
 **Bad:**
 ```javascript
@@ -281,9 +270,9 @@ function isClientActive(client) {
   return clientRecord.isActive();
 }
 ```
-**[⬆ back to top](#mục-lục)**
+**[⬆ Về đầu trang](#mục-lục)**
 
-### Function names should say what they do
+### Tên chức năng phải nói ra được những gì chúng làm
 
 **Bad:**
 ```javascript
@@ -293,7 +282,7 @@ function addToDate(date, month) {
 
 const date = new Date();
 
-// It's hard to to tell from the function name what is added
+// Thông qua tên chức năng, chúng ta rất khó để nhận biết rằng nó đã thêm cái gì
 addToDate(date, 1);
 ```
 
@@ -306,12 +295,10 @@ function addMonthToDate(month, date) {
 const date = new Date();
 addMonthToDate(1, date);
 ```
-**[⬆ back to top](#mục-lục)**
+**[⬆ Về đầu trang](#mục-lục)**
 
-### Functions should only be one level of abstraction
-When you have more than one level of abstraction your function is usually
-doing too much. Splitting up functions leads to reusability and easier
-testing.
+### Chức năng chỉ nên có 1 lớp abstract
+Khi bạn có nhiều hơn 1 lớp abstract của chức năng thì thông thường làm rất nhiều. Chia nhỏ các chức năng thì việc tái sử dụng và testing sẽ dễ dàng hơn.
 
 **Bad:**
 ```javascript
@@ -374,9 +361,9 @@ function parseBetterJSAlternative(code) {
   });
 }
 ```
-**[⬆ back to top](#mục-lục)**
+**[⬆ Về đầu trang](#mục-lục)**
 
-### Remove duplicate code
+### Xóa những dòng code trùng lặp
 Do your absolute best to avoid duplicate code. Duplicate code is bad because it
 means that there's more than one place to alter something if you need to change
 some logic.
