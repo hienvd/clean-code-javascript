@@ -11,7 +11,7 @@ Original Repository: [ryanmcdermott/clean-code-javascript](https://github.com/ry
   6. [Testing](#testing)
   7. [Concurrency](#concurrency)
   8. [Xử lí lỗi](#xử-lí-lỗi)
-  9. [Formatting](#formatting)
+  9. [Định dạng](#định-dạng)
   10. [Viết chú thích](#viết-chú-thích)
   11. [Các ngôn ngữ khác](#các-ngôn-ngữ-khác)
 
@@ -1915,22 +1915,25 @@ getdata()
 **[⬆ về trang chủ](#mục-lục)**
 
 
-## **Formatting**
-Formatting is subjective. Like many rules herein, there is no hard and fast
-rule that you must follow. The main point is DO NOT ARGUE over formatting.
-There are [tons of tools](http://standardjs.com/rules.html) to automate this.
-Use one! It's a waste of time and money for engineers to argue over formatting.
+## **Định dạng**
+Việc định dạng code mang tính chủ quan. Giống như nhiều quy tắc được trình
+bày trong tài liệu này, không có quy tắc nào cứng nhắc và nhanh chóng mà bạn
+bắt buộc phải tuân theo. Điểm chính của phần này là ĐỪNG BAO GIỜ TRANH CÃI
+về việc định dạng code như thế nào. Có [hàng tá công cụ](http://standardjs.com/rules.html)
+để tự động hoá việc này. Hãy sử dụng một công cụ nào đó! Thật tốn thời gian và
+tiền bạc chỉ để tranh cãi về vấn đề định dạng code.
 
-For things that don't fall under the purview of automatic formatting
-(indentation, tabs vs. spaces, double vs. single quotes, etc.) look here
-for some guidance.
+Đối với những thứ không thuộc phạm vi của việc tự động định dạng code (thụt đầu
+dòng, tab và space, nháy đơn và nháy kép,..) hãy xem một số hướng dẫn ở đây.
 
-### Use consistent capitalization
-JavaScript is untyped, so capitalization tells you a lot about your variables,
-functions, etc. These rules are subjective, so your team can choose whatever
-they want. The point is, no matter what you all choose, just be consistent.
+### Sử dụng thống nhất cách viết hoa
+Javascript là một ngôn ngữ không định kiểu, vì vậy việc viết hoa sẽ nói lên rất
+nhiều về các biến, hàm,.. của bạn. Những quy tắc này thì mang tính chủ quan,
+vì thế team bạn có thể chọn quy tắc nào họ muốn. Tuy nhiên điều quan trọng là
+dù bạn chọn cách viết như thế nào, thì cũng hãy sử dụng thống nhất nó trong
+codebase của bạn.
 
-**Bad:**
+**Không tốt:**
 ```javascript
 const DAYS_IN_WEEK = 7;
 const daysInMonth = 30;
@@ -1945,7 +1948,7 @@ class animal {}
 class Alpaca {}
 ```
 
-**Good:**
+**Tốt:**
 ```javascript
 const DAYS_IN_WEEK = 7;
 const DAYS_IN_MONTH = 30;
@@ -1959,13 +1962,14 @@ function restoreDatabase() {}
 class Animal {}
 class Alpaca {}
 ```
-**[⬆ back to top](#mục-lục)**
+**[⬆ về đầu trang](#mục-lục)**
 
 
-### Function callers and callees should be close
-If a function calls another, keep those functions vertically close in the source
-file. Ideally, keep the caller right above the callee. We tend to read code from
-top-to-bottom, like a newspaper. Because of this, make your code read that way.
+### Các hàm gọi và hàm được gọi nên nằm gần nhau
+Nếu một hàm gọi một hàm  khác, hãy giữ những hàm này nằm gần theo chiều dọc trong
+file. Lí tưởng là, hãy giữ cho hàm gọi ở trên hàm được gọi. Chúng ta có xu hướng
+đọc code từ trên xuống, giống như đọc báo vậy. Do đó, hãy làm cho code của chúng
+ta cũng được đọc theo cách đó.
 
 **Bad:**
 ```javascript
@@ -2045,7 +2049,7 @@ const review = new PerformanceReview(employee);
 review.perfReview();
 ```
 
-**[⬆ back to top](#mục-lục)**
+**[⬆ về trang chủ](#mục-lục)**
 
 ## **Viết chú thích**
 ### Chỉ nên viết chú thích cho những thứ có logic phức tạp.
@@ -2175,6 +2179,7 @@ const actions = function() {
 
 Tài liệu này cũng có sẵn ở các ngôn ngữ sau:
 
+  - ![en](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags-iso/shiny/24/US.png) **English**: [ryanmcdermott/clean-code-javascript](https://github.com/ryanmcdermott/clean-code-javascript)
   - ![br](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Brazil.png) **Brazilian Portuguese**: [fesnt/clean-code-javascript](https://github.com/fesnt/clean-code-javascript)
   - ![cn](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/China.png) **Chinese**: [alivebao/clean-code-js](https://github.com/alivebao/clean-code-js)
   - ![de](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Germany.png) **German**: [marcbruederlin/clean-code-javascript](https://github.com/marcbruederlin/clean-code-javascript)
