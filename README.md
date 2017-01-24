@@ -10,7 +10,7 @@ Original Repository: [ryanmcdermott/clean-code-javascript](https://github.com/ry
   5. [Classes](#classes)
   6. [Testing](#testing)
   7. [Concurrency](#concurrency)
-  8. [Error Handling](#error-handling)
+  8. [Xử lí lỗi](#xử-lí-lỗi)
   9. [Formatting](#formatting)
   10. [Viết chú thích](#viết-chú-thích)
   11. [Các ngôn ngữ khác](#các-ngôn-ngữ-khác)
@@ -1843,21 +1843,21 @@ async function getCleanCodeArticle() {
 **[⬆ back to top](#mục-lục)**
 
 
-## **Error Handling**
-Thrown errors are a good thing! They mean the runtime has successfully
-identified when something in your program has gone wrong and it's letting
-you know by stopping function execution on the current stack, killing the
-process (in Node), and notifying you in the console with a stack trace.
+## **Xử lí lỗi**
+Thông báo lỗi là một điều tốt! Nghĩa là chương trình của bạn nhận dạng
+được khi có một cái gì đó chạy không đúng và nó sẽ cho bạn biết bằng việc
+dừng chức năng mà nó đang thực thi, huỷ tiến trình (trong Node), và thông
+báo cho bạn trong console với một stack để theo dấu.
 
-### Don't ignore caught errors
-Doing nothing with a caught error doesn't give you the ability to ever fix
-or react to said error. Logging the error to the console (`console.log`)
-isn't much better as often times it can get lost in a sea of things printed
-to the console. If you wrap any bit of code in a `try/catch` it means you
-think an error may occur there and therefore you should have a plan,
-or create a code path, for when it occurs.
+### Đừng bỏ qua những lỗi đã bắt được
+Nếu không làm gì với lỗi đã bắt được, bạn sẽ không thể sửa hoặc phản ứng
+lại được với lỗi đó. Ghi lỗi ra console (`console.log`) cũng không tốt hơn
+bao nhiêu vì đa số nó có thể bị trôi mất trong một đống những thứ được hiển
+thị ra ở console. Nếu bạn đặt bất cứ đoạn code nào trong một block `try/catch`,
+tức là bạn nghĩ một lỗi có thể xảy ra ở đây, do đó bạn nên có một giải pháp
+hoặc tạo một luồng code để xử lí lỗi khi nó xảy ra.
 
-**Bad:**
+**Không tốt:**
 ```javascript
 try {
   functionThatMightThrow();
@@ -1866,7 +1866,7 @@ try {
 }
 ```
 
-**Good:**
+**Tốt:**
 ```javascript
 try {
   functionThatMightThrow();
@@ -1881,11 +1881,10 @@ try {
 }
 ```
 
-### Don't ignore rejected promises
-For the same reason you shouldn't ignore caught errors
-from `try/catch`.
+### Đừng bỏ qua những promise bị lỗi (rejected)
+Cùng nguyên nhân với phần trên.
 
-**Bad:**
+**Không tốt:**
 ```javascript
 getdata()
 .then((data) => {
@@ -1896,7 +1895,7 @@ getdata()
 });
 ```
 
-**Good:**
+**Tốt:**
 ```javascript
 getdata()
 .then((data) => {
@@ -1913,7 +1912,7 @@ getdata()
 });
 ```
 
-**[⬆ back to top](#mục-lục)**
+**[⬆ về trang chủ](#mục-lục)**
 
 
 ## **Formatting**
