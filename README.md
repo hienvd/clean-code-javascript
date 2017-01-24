@@ -1852,10 +1852,10 @@ báo cho bạn trong console với một stack để theo dấu.
 ### Đừng bỏ qua những lỗi đã bắt được
 Nếu không làm gì với lỗi đã bắt được, bạn sẽ không thể sửa hoặc phản ứng
 lại được với lỗi đó. Ghi lỗi ra console (`console.log`) cũng không tốt hơn
-bao nhiêu vì đa số nó có thể bị trôi mất trong một đống những thứ được in
-ra console. Nếu bạn đặt bất cứ đoạn code nào trong một block `try/catch`,
-tức là bạn nghĩ một lỗi có thể xảy ra, do đó bạn nên có một kế hoạch, hoặc
-tạo một luồng code để xử lí lỗi khi nó xảy ra.
+bao nhiêu vì đa số nó có thể bị trôi mất trong một đống những thứ được hiển
+thị ra ở console. Nếu bạn đặt bất cứ đoạn code nào trong một block `try/catch`,
+tức là bạn nghĩ một lỗi có thể xảy ra ở đây, do đó bạn nên có một giải pháp
+hoặc tạo một luồng code để xử lí lỗi khi nó xảy ra.
 
 **Không tốt:**
 ```javascript
