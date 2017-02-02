@@ -5,7 +5,7 @@ Original Repository: [ryanmcdermott/clean-code-javascript](https://github.com/ry
 ## Mục lục
   1. [Introduction](#introduction)
   2. [Biến](#biến)
-  3. [Hàm](#functions)
+  3. [Hàm](#hàm)
   4. [Đối tượng và Cấu trúc dữ liệu](#đối-tượng-và-cấu-trúc-dữ-liệu)
   5. [Classes](#classes)
   6. [Testing](#testing)
@@ -199,34 +199,44 @@ function createMicrobrewery(breweryName = 'Hipster Brew Co.') {
 
 ## **Hàm**
 ### Đối số của hàm (lý tưởng là ít hơn hoặc bằng 2)
-Giới hạn số lượng param của hàm là một điều cực kì quan trọng bởi vì nó làm cho hàm của bạn trở nên dễ dàng hơn để test. Trường hợp có nhiều hơn 3 params có thể dẫn đến việc bạn phải test hàng tấn test case khác nhau với những đối số riêng biệt.
+Giới hạn số lượng param của hàm là một điều cực kì quan trọng bởi vì nó làm cho
+hàm của bạn trở nên dễ dàng hơn để test. Trường hợp có nhiều hơn 3 params
+có thể dẫn đến việc bạn phải test hàng tấn test case khác nhau với
+những đối số riêng biệt.
 
-1 hoặc 2 đối số là trường hợp lý tưởng, còn trường hợp 3 đối số thì có thể sử dụng được nhưng chúng ta nên tránh đi là tốt hơn. Những trường hợp khác (từ 3 params trở lên) thì phải cân nhắc thật kỹ lưỡng để sử dụng. Thông thường nếu bạn có nhiều hơn 2 đối số params thì function của bạn thường phải thực hiện nhiều hơn. Trong trường hợp ngược lại, phần lớn thời gian 
+1 hoặc 2 đối số là trường hợp lý tưởng, còn trường hợp 3 đối số thì có thể
+sử dụng được nhưng chúng ta nên tránh đi là tốt hơn. Những trường hợp khác
+(từ 3 params trở lên) thì phải cân nhắc thật kỹ lưỡng để sử dụng. 
+Thông thường nếu bạn có nhiều hơn 2 đối số params thì function của bạn thường
+phải thực hiện nhiều hơn. Trong trường hợp ngược lại, phần lớn thời gian 
 #TODO
 more than two arguments then your function is trying to do too much. In cases
 where it's not, most of the time a higher-level object will suffice as an
 argument.
 #ENDTODO
 
-Ở Javascript cho phép bạn tạo một object với nhiều đối số, mà không có một class nào có sẵn, bạn có thể sử dụng một object nếu bạn đang tìm kiếm một phương pháp khác thay thế cho việc truyền nhiều đối số.
+Ở Javascript cho phép bạn tạo một object với nhiều đối số, mà không có một
+class nào có sẵn, bạn có thể sử dụng một object nếu bạn đang tìm kiếm một phương
+pháp khác thay thế cho việc truyền nhiều đối số.
 
-Để những thuộc tính của chức năng dự kiến trở nên rõ ràng, bạn có thể sử dụng các cấu trúc của ES6 destructuring. Dưới đây là một số ưu điểm:
+Để những thuộc tính của chức năng dự kiến trở nên rõ ràng, bạn có thể sử dụng
+các cấu trúc của ES6 destructuring. Dưới đây là một số ưu điểm:
 
-1. Khi một ai đó nhìn vào chức năng, những thuộc tính sẽ trở nên rõ ràng ngay lập tức.
+1. Khi một ai đó nhìn vào hàm, những thuộc tính sẽ trở nên rõ ràng ngay lập tức.
 2. Destructuring also clones the specified primitive values of the argument
 object passed into the function. This can help prevent side effects. Note:
 objects and arrays that are destructured from the argument object are NOT
 cloned.
 3. Linter có thể sẽ cảnh báo bạn về những thuộc tính không sử dụng, do đó nó sẽ phải có destructuring 
 
-**Bad:**
+**Không tốt:**
 ```javascript
 function createMenu(title, body, buttonText, cancellable) {
   // ...
 }
 ```
 
-**Good:**
+**Tốt:**
 ```javascript
 function createMenu({ title, body, buttonText, cancellable }) {
   // ...
@@ -243,9 +253,14 @@ createMenu({
 
 
 ### Chức năng chỉ nên giải quyết một vấn đề
-Đây là một quy định quan trọng của kỹ thuật phần mềm. Khi một hàm thực hiện nhiều hơn 1 vấn đề, chúng sẽ trở nên khó khăn hơn để viết code, test, và .... Khi bạn có thể tách riêng biệt một chức năng cho một action thì chúng có thể được refactor dễ dàng và code của bạn sẽ "sạch sẽ", dễ hiểu hơn. Nếu bạn chỉ cần làm theo hướng dẫn này thôi mà không cần làm gì khác thì bạn cũng đã giỏi hơn nhiều developer khác rồi. 
+Đây là một quy định quan trọng của kỹ thuật phần mềm. Khi một hàm thực hiện
+nhiều hơn 1 vấn đề, chúng sẽ trở nên khó khăn hơn để viết code, test, và ....
+Khi bạn có thể tách riêng biệt một chức năng cho một action thì chúng có thể được
+refactor dễ dàng và code của bạn sẽ "sạch sẽ", dễ hiểu hơn. Nếu bạn chỉ cần làm
+theo hướng dẫn này thôi mà không cần làm gì khác thì bạn cũng đã giỏi hơn nhiều
+developer khác rồi. 
 
-**Bad:**
+**Không tốt:**
 ```javascript
 function emailClients(clients) {
   clients.forEach((client) => {
@@ -257,7 +272,7 @@ function emailClients(clients) {
 }
 ```
 
-**Good:**
+**Tốt:**
 ```javascript
 function emailClients(clients) {
   clients
@@ -274,7 +289,7 @@ function isClientActive(client) {
 
 ### Tên chức năng phải nói ra được những gì chúng làm
 
-**Bad:**
+**Không tốt:**
 ```javascript
 function addToDate(date, month) {
   // ...
@@ -286,7 +301,7 @@ const date = new Date();
 addToDate(date, 1);
 ```
 
-**Good:**
+**Tốt:**
 ```javascript
 function addMonthToDate(month, date) {
   // ...
@@ -298,9 +313,10 @@ addMonthToDate(1, date);
 **[⬆ Về đầu trang](#mục-lục)**
 
 ### Chức năng chỉ nên có 1 lớp abstract
-Khi bạn có nhiều hơn 1 lớp abstract của chức năng thì thông thường làm rất nhiều. Chia nhỏ các chức năng thì việc tái sử dụng và testing sẽ dễ dàng hơn.
+Khi bạn có nhiều hơn 1 lớp abstract của chức năng thì thông thường làm rất nhiều.
+Chia nhỏ các chức năng thì việc tái sử dụng và testing sẽ dễ dàng hơn.
 
-**Bad:**
+**Không tốt:**
 ```javascript
 function parseBetterJSAlternative(code) {
   const REGEXES = [
@@ -326,7 +342,7 @@ function parseBetterJSAlternative(code) {
 }
 ```
 
-**Good:**
+**Tốt:**
 ```javascript
 function tokenize(code) {
   const REGEXES = [
@@ -364,28 +380,26 @@ function parseBetterJSAlternative(code) {
 **[⬆ Về đầu trang](#mục-lục)**
 
 ### Xóa những dòng code trùng lặp
-Do your absolute best to avoid duplicate code. Duplicate code is bad because it
-means that there's more than one place to alter something if you need to change
-some logic.
+Tuyệt đối tránh những dòng code trùng lặp. Code trùng lặp sẽ làm nó trở nên xấu xí
+bởi vì có nghĩa là có hơn 1 nơi để thay đổi một việc gì đó nếu bạn cần thay đổi logic.
 
-Imagine if you run a restaurant and you keep track of your inventory: all your
-tomatoes, onions, garlic, spices, etc. If you have multiple lists that
-you keep this on, then all have to be updated when you serve a dish with
-tomatoes in them. If you only have one list, there's only one place to update!
+Hãy tưởng tượng nếu bạn điều hành một nhà hàng và bạn theo dõi hàng tồn kho:
+bao gồm cà chua, hành tây, tỏi, gia vị, vv.... Nếu bạn có nhiều danh sách quản lý,
+thì tất cả chúng phải được thay đổi khi bạn phục vụ một món ăn có chứa cà chua.
+Nếu bạn chỉ có 1 danh sách, thì việc cập nhật ở một nơi thôi.
 
-Oftentimes you have duplicate code because you have two or more slightly
-different things, that share a lot in common, but their differences force you
-to have two or more separate functions that do much of the same things. Removing
-duplicate code means creating an abstraction that can handle this set of
-different things with just one function/module/class.
+Thông thường, bạn có những dòng code lặp lại bởi vì bạn có 2 hay nhiều hơn một chút khác nhau giữa chúng,
+mà chúng chia sẻ nhau rất nhiều điều chung, nhưng sự khác nhau của chúng buộc bạn
+phải có 2 hay nhiều hàm riêng biệt để làm nhiều điều tương tự. Xóa đi những dòng code trùng
+có nghĩa là tạo ra những một khái niệm trừu tượng có thể xử lý tập hợp những điểm khác biệt này chỉ với một hàm/module/class.
 
-Getting the abstraction right is critical, that's why you should follow the
-SOLID principles laid out in the *Classes* section. Bad abstractions can be
-worse than duplicate code, so be careful! Having said this, if you can make
-a good abstraction, do it! Don't repeat yourself, otherwise you'll find yourself
-updating multiple places anytime you want to change one thing.
+Xây dựng trừu tượng hóa đúng đắn là rất quan trọng, đó là lý do tại sao bạn nên tuân thủ
+nguyên tắc SOLID được đặt ra trong phần *Classes*. Những lớp trừu tượng không tốt có thể
+còn tệ hơn cả những dòng code trùng lặp, vì thế hãy cẩn thận! Đã có người từng nói rằng, nếu bạn
+tạo được một lớp trừu tượng tốt, hãy làm nó! Đừng lặp lại chính mình, nếu không bạn sẽ phải tìm 
+chính mình để cập nhật nhiều nơi bất kì khi nào bạn muốn thay đổi một thứ.
 
-**Bad:**
+**Không tốt:**
 ```javascript
 function showDeveloperList(developers) {
   developers.forEach((developer) => {
@@ -418,7 +432,7 @@ function showManagerList(managers) {
 }
 ```
 
-**Good:**
+**Tốt:**
 ```javascript
 function showList(employees) {
   employees.forEach((employee) => {
@@ -441,11 +455,11 @@ function showList(employees) {
   });
 }
 ```
-**[⬆ back to top](#mục-lục)**
+**[⬆ Về đầu trang](#mục-lục)**
 
-### Set default objects with Object.assign
+### Thiết lập những object mặc định với Object.assign
 
-**Bad:**
+**Không tốt:**
 ```javascript
 const menuConfig = {
   title: null,
@@ -464,7 +478,7 @@ function createMenu(config) {
 createMenu(menuConfig);
 ```
 
-**Good:**
+**Tốt:**
 ```javascript
 const menuConfig = {
   title: 'Order',
@@ -481,19 +495,20 @@ function createMenu(config) {
     cancellable: true
   }, config);
 
-  // config now equals: {title: "Order", body: "Bar", buttonText: "Send", cancellable: true}
+  // config bây giờ tương đương: {title: "Order", body: "Bar", buttonText: "Send", cancellable: true}
   // ...
 }
 
 createMenu(menuConfig);
 ```
-**[⬆ back to top](#mục-lục)**
+**[⬆ Về đầu trang](#mục-lục)**
 
 
-### Don't use flags as function parameters
-Flags tell your user that this function does more than one thing. Functions should do one thing. Split out your functions if they are following different code paths based on a boolean.
+### Đừng sử dụng các cờ như một tham số hàm
+Các cờ cho người dùng của bạn biết rằng hàm có nhiều hơn 1 điều. Các hàm nên làm 1 chức năng.
+Hãy tách hàm nếu chúng đang theo một con đường code khác dựa trên một boolean.
 
-**Bad:**
+**Không tốt:**
 ```javascript
 function createFile(name, temp) {
   if (temp) {
@@ -504,7 +519,7 @@ function createFile(name, temp) {
 }
 ```
 
-**Good:**
+**Tốt:**
 ```javascript
 function createFile(name) {
   fs.create(name);
@@ -514,28 +529,28 @@ function createTempFile(name) {
   createFile(`./temp/${name}`);
 }
 ```
-**[⬆ back to top](#mục-lục)**
+**[⬆ Về đầu trang](#mục-lục)**
 
-### Avoid Side Effects (part 1)
-A function produces a side effect if it does anything other than take a value in
-and return another value or values. A side effect could be writing to a file,
-modifying some global variable, or accidentally wiring all your money to a
-stranger.
+### Tránh ảnh hưởng phụ (phần 1)
+Một hàm tạo ra ảnh hưởng phụ nếu chúng có bất kì điều gì khác hơn là lấy một giá trị
+trong và trả về một hoặc nhiều giá trị. Ảnh hưởng phụ có thể được viết vào một file,
+thay đổi vài biến toàn cục, hoặc vô tình nối tất cả tiền của bạn tới một người lại mặt.
 
-Now, you do need to have side effects in a program on occasion. Like the previous
-example, you might need to write to a file. What you want to do is to
-centralize where you are doing this. Don't have several functions and classes
-that write to a particular file. Have one service that does it. One and only one.
+Bây giờ, thỉnh thoảng bạn cần phải có những ảnh hưởng phụ trong một chương trình. 
+Giống như ví dụ trước, bạn nên cân viết một file. Những gì bạn cần làm là tập trung
+vào nơi bạn sẽ làm nó. Đừng viết hàm và class riêng biệt để tạo ra một file cụ thể.
+Hãy có một service để viết nó. Một và chỉ một.
 
-The main point is to avoid common pitfalls like sharing state between objects
-without any structure, using mutable data types that can be written to by anything,
-and not centralizing where your side effects occur. If you can do this, you will
-be happier than the vast majority of other programmers.
+Điểm chính là tránh lỗi chung giống như chia sẻ trạng thái giữa những object
+mà không có bất kì cấu trúc, sử dụng các loại dữ liệu có thể thay đổi có thể được
+tạo ra bởi bất kì điều gì, và không tập trung nơi có thể xảy ra các ảnh hưởng phụ.
+Nếu bạn có thể làm điều đó, bạn sẽ hạnh phúc hơn so với phần lớn các lập trình viên khác.
 
-**Bad:**
+**Không tốt:**
 ```javascript
-// Global variable referenced by following function.
-// If we had another function that used this name, now it'd be an array and it could break it.
+// Biến toàn cục được tham chiếu bởi hàm dưới đây.
+// Nếu chúng ta có một hàm khác mà sử dụng name, 
+// giờ thì nó muốn trở thành một array và nó có thể phá vỡ nó.
 let name = 'Ryan McDermott';
 
 function splitIntoFirstAndLastName() {
@@ -547,7 +562,7 @@ splitIntoFirstAndLastName();
 console.log(name); // ['Ryan', 'McDermott'];
 ```
 
-**Good:**
+**Tốt:**
 ```javascript
 function splitIntoFirstAndLastName(name) {
   return name.split(' ');
@@ -559,58 +574,57 @@ const newName = splitIntoFirstAndLastName(name);
 console.log(name); // 'Ryan McDermott';
 console.log(newName); // ['Ryan', 'McDermott'];
 ```
-**[⬆ back to top](#mục-lục)**
+**[⬆ Về đầu trang](#mục-lục)**
 
-### Avoid Side Effects (part 2)
-In JavaScript, primitives are passed by value and objects/arrays are passed by
-reference. In the case of objects and arrays, if our function makes a change
-in a shopping cart array, for example, by adding an item to purchase,
-then any other function that uses that `cart` array will be affected by this
-addition. That may be great, however it can be bad too. Let's imagine a bad
-situation:
+### Tránh những ảnh hưởng phụ (phần 2)
+Trong JavaScript, nguyên thủy được truyền theo giá trị và các đối tượng/mảng được 
+truyền tham chiếu. Trong trường hợp các đối tượng và mảng, ví dụ nếu những hàm của chúng ta
+tạo ra những thay trong trong một mảng giỏ mua hàng, bằng cách thêm một sản phẩm để mua,
+thì bất kì hàm khác mà sử dụng mảng 'giỏ' hàng sẽ bị ảnh hưởng bởi việc thêm này.
+Nó có thể tốt, tuy nhiên nó cũng có thể trở nên tồi tệ. Hãy tưởng tượng trường hợp tồi sau:
 
-The user clicks the "Purchase", button which calls a `purchase` function that
-spawns a network request and sends the `cart` array to the server. Because
-of a bad network connection, the `purchase` function has to keep retrying the
-request. Now, what if in the meantime the user accidentally clicks "Add to Cart"
-button on an item they don't actually want before the network request begins?
-If that happens and the network request begins, then that purchase function
-will send the accidentally added item because it has a reference to a shopping
-cart array that the `addItemToCart` function modified by adding an unwanted
-item.
+Người sử dụng nhấp chuột vào "Mua", button gọi tới hàm `purchase` mà có thể sinh ra
+một yêu cầu mạng và gửi mảng `giỏ` lên server. Bởi vì kết nối chậm, chức năng `purchase`
+có thể giữ việc thử lại yêu cầu. Bây giờ, nếu trong thời gian đó người sử dụng
+vô tình nhấn chuột vào nút "Add to Cart"  trong một sản phẩm và yêu cầu mạng thực hiện,
+chức năng mua sẽ vô tình thêm một sản phẩm bởi vì nó có một tham chiếu đến mảng giỏ hàng
+mà hàm `addItemToCart` đã thay đổi bằng cách thêm vào một sản phẩm không mong muốn.
 
-A great solution would be for the `addItemToCart` to always clone the `cart`,
-edit it, and return the clone. This ensures that no other functions that are
-holding onto a reference of the shopping cart will be affected by any changes.
+Một giải pháp tốt cho `addItemToCart` là luôn luôn tạo một bản sao `giỏ`,
+thay đổi nó, và trả về giá trị bản sao. Nó đảm bảo rằng không một chức năng nào có nắm giữ
+tham chiếu của giỏ mua hàng bị ảnh hưởng bởi bất kì thay đổi.
 
-Two caveats to mention to this approach:
-  1. There might be cases where you actually want to modify the input object,
-but when you adopt this programming practice you will find that those case
-are pretty rare. Most things can be refactored to have no side effects!
+Hai điều cần cẩn thị khi thực hiện tới cách tiếp cận này:
+  1. Có thể có những trường hợp mà ở đó bạn thực sự muốn thay đổi đối tượng đầu vào,
+nhưng khi bạn áp dụng phương pháp lập trình này trong thực tiễn bạn sẽ phải tìm những 
+trường hợp là hiếm khi. Hầu hết các vấn đề có thể được cấu trúc lại để không bị ảnh hưởng phụ.
+  2. Nhân bản đối tượng lớn có thể sẽ làm hiệu suất mạnh. Thật may mắn, nó không phải là một
+vấn đề lớn trong thực tiễn bởi vì [great libraries](https://facebook.github.io/immutable-js/)
+cho phép những cách tiếp cận trở nên nhanh và ít tốn bộ nhớ vì nó sẽ cho bạn tự tạo những 
+đối tượng và mảng.
 
-  2. Cloning big objects can be very expensive in terms of performance. Luckily,
-this isn't a big issue in practice because there are
-[great libraries](https://facebook.github.io/immutable-js/) that allow
-this kind of programming approach to be fast and not as memory intensive as
-it would be for you to manually clone objects and arrays.
-
-**Bad:**
+**Không tốt:**
 ```javascript
 const addItemToCart = (cart, item) => {
   cart.push({ item, date: Date.now() });
 };
 ```
 
-**Good:**
+**Tốt:**
 ```javascript
 const addItemToCart = (cart, item) => {
   return [...cart, { item, date : Date.now() }];
 };
 ```
 
-**[⬆ back to top](#mục-lục)**
+**[⬆ Về đầu trang](#mục-lục)**
 
 ### Don't write to global functions
+Ô nhiễm toàn cục là một thực tiễn xấu trong JavaScript bởi vì bạn có thể xung đột với 
+thư viện khác và người dùng API của bạn có thể không phải là người khôn ngoan cho đến khi
+họ nhận ra được những ngoại lệ trong sản phẩm. Ví dụ: bạn sẽ làm gì nếu bạn muốn mở rộng
+mảng JavaScript native để có một phương thức `diff` mà có thể đưa ra những 
+sự khác nhau giữa hai mảng?
 Polluting globals is a bad practice in JavaScript because you could clash with another
 library and the user of your API would be none-the-wiser until they get an
 exception in production. Let's think about an example: what if you wanted to
