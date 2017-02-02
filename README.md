@@ -19,13 +19,28 @@ Original Repository: [ryanmcdermott/clean-code-javascript](https://github.com/ry
 ![Humorous image of software quality estimation as a count of how many expletives
 you shout when reading code](http://www.osnews.com/images/comics/wtfm.jpg)
 
-Những nguyên tắc kỹ thuật phần mềm, từ cuốn sách [*Clean Code*](https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882) của Robert C. Martin's, sẽ áp dụng cho ngôn ngữ JavaScript. Đây không phải là một hướng dẫn phong cách viết code Javascript mà là một hướng dẫn để viết lên các đoạn mã dễ đọc hiểu, tái sử dụng và tạo ra sản phẩm phần mềm có cấu trúc trong Javascript.
+Những nguyên tắc kỹ thuật phần mềm, từ cuốn sách [*Clean Code*](https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882)
+của Robert C. Martin's, được áp dụng cho ngôn ngữ JavaScript. Đây không phải là một hướng dẫn về cách viết code Javascript mà là hướng dẫn về cách viết các đoạn code dễ đọc hiểu, tái sử dụng và tái cấu trúc được trong Javascript.
 
-Không phải tất cả các nguyên tắc ở đây phải được tuân thủ một cách nghiêm ngặt, và thậm chí chỉ có một ít trong số đó được sử dụng phổ biến. Ở đây, nó chỉ là một hướng dẫn - không hơn không kém, nhưng chúng được hệ thống hóa thông qua nhiều năm thu thập kinh nghiệm của các tác giả của cuốn sách *Clean Code*
+Không phải mọi nguyên tắc ở đây phải được tuân thủ một cách nghiêm ngặt,
+và thậm chí chỉ có một ít trong số đó được sử dụng phổ biến. Ở đây, nó chỉ là một
+hướng dẫn - không hơn không kém, nhưng chúng được hệ thống hóa thông qua kinh
+nghiệm thu thập được qua nhiều năm của các tác giả của cuốn sách *Clean Code*
 
-Ngành kỹ thuật phần mềm chỉ phát triển được hơn 50 năm, và chúng ta vẫn đang học rất nhiều. Một khi kiến trúc phần mềm trở thành phổ biến, có lẽ sau đó chúng ta sẽ có thêm nhiều luật lệ khó hơn phải tuân theo. Còn giờ đây, hãy để những hướng dẫn này sẽ cung cấp như một tiêu chuẩn để đánh giá chất lượng các mã Javascript mà bạn và team của các bạn làm xây dựng nên.
+Ngành kỹ thuật phần mềm chỉ phát triển được hơn 50 năm, và chúng ta vẫn
+đang học rất nhiều. Một khi kiến trúc phần mềm trở thành phổ biến, có lẽ sau đó
+chúng ta sẽ có thêm nhiều luật lệ khó hơn phải tuân theo. Còn giờ đây, 
+hãy để những hướng dẫn này như là một tiêu chuẩn để đánh giá chất lượng các đoạn 
+code Javascript mà bạn và team của bạn tạo ra.
 
-Một điều nữa: Biết không thôi sẽ không làm bạn phát triển phần mềm tốt hơn, và làm với chúng trong nhiều năm cũng không có nghĩa bạn sẽ không gặp bất cứ sai lầm nào. Mỗi đoạn mã bắt đầu như một bản thảo đầu tiên, giống như đất sét được nặn nhào và cho tới cuối cùng thì nó sẽ lộ diện hình hài. Cuối cùng, chúng tôi gọt tỉa những khuyết điểm khi chúng tôi xem xét lại nó cùng với các đồng nghiệp. Đừng đánh bại chính mình bởi những bản thảo đầu tiên cần phải chỉnh sửa. Thay vào đó hãy đánh bại những dòng code.
+Biết những hướng dẫn này thôi sẽ không thể ngay lập tức làm bạn trở thành một 
+lập trình viên phần mềm tốt hơn được, và làm việc với chúng trong nhiều năm 
+cũng không có nghĩa bạn sẽ không gặp bất cứ sai lầm nào. Mỗi đoạn code bắt đầu 
+như một bản thảo đầu tiên, giống như đất sét được nặn nhào và cho tới cuối cùng 
+thì nó sẽ lộ diện hình hài. Cuối cùng, chúng ta gọt tỉa những khuyết điểm khi
+chúng ta xem xét lại nó cùng với các đồng nghiệp. 
+Đừng để bản thân bạn bị đánh bại bởi những bản thảo đầu tiên, 
+thứ mà vẫn cần phải được chỉnh sửa. Thay vào đó hãy đánh bại những dòng code.
 
 ## **Biến**
 ### Sử dụng tên biến có nghĩa và dễ phát âm
