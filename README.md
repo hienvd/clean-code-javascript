@@ -312,8 +312,8 @@ addMonthToDate(1, date);
 ```
 **[⬆ Về đầu trang](#mục-lục)**
 
-### Chức năng chỉ nên có 1 lớp abstract
-Khi bạn có nhiều hơn 1 lớp abstract của chức năng thì thông thường làm rất nhiều.
+### Chức năng chỉ nên có 1 lớp trừu tượng
+Khi bạn có nhiều hơn 1 lớp trừu tượng của chức năng thì thông thường làm rất nhiều.
 Chia nhỏ các chức năng thì việc tái sử dụng và testing sẽ dễ dàng hơn.
 
 **Không tốt:**
@@ -624,18 +624,13 @@ const addItemToCart = (cart, item) => {
 thư viện khác và người dùng API của bạn có thể không phải là người khôn ngoan cho đến khi
 họ nhận ra được những ngoại lệ trong sản phẩm. Ví dụ: bạn sẽ làm gì nếu bạn muốn mở rộng
 mảng JavaScript native để có một phương thức `diff` mà có thể đưa ra những 
-sự khác nhau giữa hai mảng?
-Polluting globals is a bad practice in JavaScript because you could clash with another
-library and the user of your API would be none-the-wiser until they get an
-exception in production. Let's think about an example: what if you wanted to
-extend JavaScript's native Array method to have a `diff` method that could
-show the difference between two arrays? You could write your new function
-to the `Array.prototype`, but it could clash with another library that tried
-to do the same thing. What if that other library was just using `diff` to find
-the difference between the first and last elements of an array? This is why it
-would be much better to just use ES2015/ES6 classes and simply extend the `Array` global.
+sự khác nhau giữa hai mảng? Bạn có thể viết một hàm mới với `Array.prototype`,
+nhưng nó có thể xung đột với một thư viện khác mà đã cố gắng để làm những điều tương tự.
+Điều gì xảy ra nếu một thư viện chỉ sử dụng `diff` để tìm sự khác biệt giữa phần tử 
+đầu tiên và cuối cùng của một mảng? Đó là lý do tại sao nó sẽ là tốt hơn khi 
+chỉ sử dụng cá lớp ES2015/ES6 và đơn giản mở rộng `Array` toàn cục.
 
-**Bad:**
+**Không tốt:**
 ```javascript
 Array.prototype.diff = function diff(comparisonArray) {
   const hash = new Set(comparisonArray);
@@ -643,7 +638,7 @@ Array.prototype.diff = function diff(comparisonArray) {
 };
 ```
 
-**Good:**
+**Tốt:**
 ```javascript
 class SuperArray extends Array {
   diff(comparisonArray) {
@@ -652,14 +647,14 @@ class SuperArray extends Array {
   }
 }
 ```
-**[⬆ back to top](#mục-lục)**
+**[⬆ Về đầu trang](#mục-lục)**
 
-### Favor functional programming over imperative programming
-JavaScript isn't a functional language in the way that Haskell is, but it has
-a functional flavor to it. Functional languages are cleaner and easier to test.
-Favor this style of programming when you can.
+### Ủng hộ lập trình chức năng trên lập trình không bắt buộc
+JavaScript không phải là ngôn ngữ chức năng trong cái của Haskell, nhưng nó có
+đặc trưng chức năng của nó. Những ngôn ngữ chức năng thì gọn gàng hơn và dễ dàng hơn
+để kiểm thử. Hãy ủng hộ phong cách lập trình khi bạn có thể.
 
-**Bad:**
+**Không tốt:**
 ```javascript
 const programmerOutput = [
   {
@@ -684,7 +679,7 @@ for (let i = 0; i < programmerOutput.length; i++) {
 }
 ```
 
-**Good:**
+**Tốt:**
 ```javascript
 const programmerOutput = [
   {
@@ -708,18 +703,18 @@ const totalOutput = programmerOutput
   .map((programmer) => programmer.linesOfCode)
   .reduce((acc, linesOfCode) => acc + linesOfCode, INITIAL_VALUE);
 ```
-**[⬆ back to top](#mục-lục)**
+**[⬆ Về đầu trang](#mục-lục)**
 
-### Encapsulate conditionals
+### Đóng gói điều kiện
 
-**Bad:**
+**Không tốt:**
 ```javascript
 if (fsm.state === 'fetching' && isEmpty(listNode)) {
   // ...
 }
 ```
 
-**Good:**
+**Tốt:**
 ```javascript
 function shouldShowSpinner(fsm, listNode) {
   return fsm.state === 'fetching' && isEmpty(listNode);
@@ -729,11 +724,11 @@ if (shouldShowSpinner(fsmInstance, listNodeInstance)) {
   // ...
 }
 ```
-**[⬆ back to top](#mục-lục)**
+**[⬆ Về đầu trang](#mục-lục)**
 
-### Avoid negative conditionals
+### Tránh điều kiện tiêu cực
 
-**Bad:**
+**Không tốt:**
 ```javascript
 function isDOMNodeNotPresent(node) {
   // ...
@@ -744,7 +739,7 @@ if (!isDOMNodeNotPresent(node)) {
 }
 ```
 
-**Good:**
+**Tốt:**
 ```javascript
 function isDOMNodePresent(node) {
   // ...
@@ -754,19 +749,19 @@ if (isDOMNodePresent(node)) {
   // ...
 }
 ```
-**[⬆ back to top](#mục-lục)**
+**[⬆ Về đầu trang](#mục-lục)**
 
-### Avoid conditionals
-This seems like an impossible task. Upon first hearing this, most people say,
-"how am I supposed to do anything without an `if` statement?" The answer is that
-you can use polymorphism to achieve the same task in many cases. The second
-question is usually, "well that's great but why would I want to do that?" The
-answer is a previous clean code concept we learned: a function should only do
-one thing. When you have classes and functions that have `if` statements, you
-are telling your user that your function does more than one thing. Remember,
-just do one thing.
+### Tránh điều kiện
+Đây dường như giống một công việc bất khả thi. Sau khi nghe điều này đầu tiên,
+hầu hết mọi người đều nói, "Tôi tin rằng tôi sẽ không thể làm gì mà không có
+mệnh đề `if`?" Câu trả lời là bạn có thể sử dụng tính đa hình để đạt được công việc
+tương tự trong rất nhiều trường hợp. Câu hỏi thứ hay thường là "đó là điều tốt 
+nhưng tại sao tôi lại muốn làm điều đó?" Câu trả lời là khái niệm code sạch sẽ trước
+chúng ta đã học: một hàm nên thực hiện 1 công việc. Khi bạn có nhiều class và hàm
+mà có nhiều mệnh đề `if`, bạn đang nói người dùng của bạn rằng hàm của bạn 
+đang làm hơn 1 công việc. Hãy nhớ, chỉ làm một công việc.
 
-**Bad:**
+**Không tốt:**
 ```javascript
 class Airplane {
   // ...
@@ -783,7 +778,7 @@ class Airplane {
 }
 ```
 
-**Good:**
+**Tốt:**
 ```javascript
 class Airplane {
   // ...
@@ -810,15 +805,15 @@ class Cessna extends Airplane {
   }
 }
 ```
-**[⬆ back to top](#mục-lục)**
+**[⬆ Về đầu trang](#mục-lục)**
 
-### Avoid type-checking (part 1)
-JavaScript is untyped, which means your functions can take any type of argument.
-Sometimes you are bitten by this freedom and it becomes tempting to do
-type-checking in your functions. There are many ways to avoid having to do this.
-The first thing to consider is consistent APIs.
+### Tránh kiểm tra loại (phần 1)
+JavaScript không định kiểu, nó có nghĩa hàm của bạn có thể mang bất kì loại của đối số.
+Đôi khi bạn có cảm giác như bị cắn bởi sự tụ do này và nó trở nên hấp dẫn để làm kiểm tra loại
+trong hàm của bạn. Có rất nhiều cách để tránh phải làm điều này. 
+Điều đầu tiên để xem xét là các API nhất quán.
 
-**Bad:**
+**Không tốt:**
 ```javascript
 function travelToTexas(vehicle) {
   if (vehicle instanceof Bicycle) {
@@ -829,26 +824,28 @@ function travelToTexas(vehicle) {
 }
 ```
 
-**Good:**
+**Tốt:**
 ```javascript
 function travelToTexas(vehicle) {
   vehicle.move(this.currentLocation, new Location('texas'));
 }
 ```
-**[⬆ back to top](#mục-lục)**
+**[⬆ Về đầu trang](#mục-lục)**
 
-### Avoid type-checking (part 2)
-If you are working with basic primitive values like strings, integers, and arrays,
-and you can't use polymorphism but you still feel the need to type-check,
-you should consider using TypeScript. It is an excellent alternative to normal
-JavaScript, as it provides you with static typing on top of standard JavaScript
-syntax. The problem with manually type-checking normal JavaScript is that
+### Tránh kiểm tra loại (phần 2)
+Nếu bạn đang làm với kiểu giá trị nguyên thủy cơ bản như string, integer và array,
+và bạn không thể sử dụng đa hình nhưng bạn vẫn cảm thấy cần thiết kiểm tra loại,
+bạn nên xem xét sử dụng TypeScript. Nó là một phương pháp thay thế tuyệt vời
+cho JavaScript thông thường, vì nó cung cấp bạn cùng với gõ tính trên đỉnh của 
+cú pháp JavaScript chuẩn. Vấn đề với kiểm tra loại thủ công JavaScript thông thường là
+làm nó cũng đòi hỏi rất nhiều 
+(The problem with manually type-checking normal JavaScript is that
 doing it well requires so much extra verbiage that the faux "type-safety" you get
-doesn't make up for the lost readability. Keep your JavaScript clean, write
-good tests, and have good code reviews. Otherwise, do all of that but with
-TypeScript (which, like I said, is a great alternative!).
+doesn't make up for the lost readability).
+Hãy giữ JavaScript của bạn sạch sẽ, viết test tốt và có duyệt code tốt. Nếu không thì
+thực hiện tất cả những điều đó nhưng với TypeScript (giống như tôi đã nói, đó là sự thay thế tốt)
 
-**Bad:**
+**Không tốt:**
 ```javascript
 function combine(val1, val2) {
   if (typeof val1 === 'number' && typeof val2 === 'number' ||
@@ -860,45 +857,45 @@ function combine(val1, val2) {
 }
 ```
 
-**Good:**
+**Tốt:**
 ```javascript
 function combine(val1, val2) {
   return val1 + val2;
 }
 ```
-**[⬆ back to top](#mục-lục)**
+**[⬆ Về đầu trang](#mục-lục)**
 
-### Don't over-optimize
-Modern browsers do a lot of optimization under-the-hood at runtime. A lot of
-times, if you are optimizing then you are just wasting your time. [There are good
-resources](https://github.com/petkaantonov/bluebird/wiki/Optimization-killers)
-for seeing where optimization is lacking. Target those in the meantime, until
-they are fixed if they can be.
+### Đừng quá tối ưu
+Những trình duyệt hiện đại làm rất nhiều tối ưu hóa bên dưới trong thời thời gian chạy.
+Rất nhiều lần, nếu bạn đang tối ưu thì bạn đang làm tốn thời gian của chính mình.
+[Đây là nguồn](https://github.com/petkaantonov/bluebird/wiki/Optimization-killers)
+để tìm kiếm nơi tối ưu hóa là thiếu. Nhằm vào những người trong khi chờ đợi, 
+cho đến khi chúng được cố định nếu họ có thể.
 
-**Bad:**
+**Không tốt:**
 ```javascript
 
-// On old browsers, each iteration with uncached `list.length` would be costly
-// because of `list.length` recomputation. In modern browsers, this is optimized.
+// Trên các trình duyệt cũ, mỗi lần lặp với uncached 'list.length` sẽ tốn kém
+// vì của `toán lại list.length`. Trong các trình duyệt hiện đại, điều này được tối ưu hóa.
 for (let i = 0, len = list.length; i < len; i++) {
   // ...
 }
 ```
 
-**Good:**
+**Tốt:**
 ```javascript
 for (let i = 0; i < list.length; i++) {
   // ...
 }
 ```
-**[⬆ back to top](#mục-lục)**
+**[⬆ Về đầu trang](#mục-lục)**
 
-### Remove dead code
-Dead code is just as bad as duplicate code. There's no reason to keep it in
-your codebase. If it's not being called, get rid of it! It will still be safe
-in your version history if you still need it.
+### Xóa dead code
+Dead code cũng tệ như code trùng lặp. Không có lý do gì để giữ chúng lại trong
+codebase của bạn. Nếu nó không được gọi, gạt nó ra!  sẽ vẫn được an toàn trong 
+lịch sử phiên bản của bạn nếu bạn vẫn cần nó.
 
-**Bad:**
+**Không tốt:**
 ```javascript
 function oldRequestModule(url) {
   // ...
@@ -913,7 +910,7 @@ inventoryTracker('apples', req, 'www.inventory-awesome.io');
 
 ```
 
-**Good:**
+**Tốt:**
 ```javascript
 function newRequestModule(url) {
   // ...
@@ -922,7 +919,7 @@ function newRequestModule(url) {
 const req = newRequestModule;
 inventoryTracker('apples', req, 'www.inventory-awesome.io');
 ```
-**[⬆ back to top](#mục-lục)**
+**[⬆ Về đầu trang](#mục-lục)**
 
 ## **Đối tượng và Cấu trúc dữ liệu**
 ### Sử dụng getter và setter
