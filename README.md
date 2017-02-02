@@ -3,7 +3,7 @@ Original Repository: [ryanmcdermott/clean-code-javascript](https://github.com/ry
 # clean-code-javascript
 
 ## Mục lục
-  1. [Introduction](#introduction)
+  1. [Giới thiệu](#gioi-thieu)
   2. [Biến](#biến)
   3. [Functions](#functions)
   4. [Đối tượng và Cấu trúc dữ liệu](#đối-tượng-và-cấu-trúc-dữ-liệu)
@@ -15,32 +15,32 @@ Original Repository: [ryanmcdermott/clean-code-javascript](https://github.com/ry
   10. [Viết chú thích](#viết-chú-thích)
   11. [Các ngôn ngữ khác](#các-ngôn-ngữ-khác)
 
-## Introduction
+## Giới thiệu
 ![Humorous image of software quality estimation as a count of how many expletives
 you shout when reading code](http://www.osnews.com/images/comics/wtfm.jpg)
 
-Software engineering principles, from Robert C. Martin's book
-[*Clean Code*](https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882),
-adapted for JavaScript. This is not a style guide. It's a guide to producing
-readable, reusable, and refactorable software in JavaScript.
+Những nguyên tắc kỹ thuật phần mềm, từ cuốn sách [*Clean Code*](https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882)
+của Robert C. Martin's, được áp dụng cho ngôn ngữ JavaScript. Đây không phải là một hướng dẫn về cách viết code Javascript mà là hướng dẫn về cách viết các đoạn code dễ đọc hiểu, tái sử dụng và tái cấu trúc được trong Javascript.
 
-Not every principle herein has to be strictly followed, and even fewer will be
-universally agreed upon. These are guidelines and nothing more, but they are
-ones codified over many years of collective experience by the authors of
-*Clean Code*.
+Không phải mọi nguyên tắc ở đây phải được tuân thủ một cách nghiêm ngặt,
+và thậm chí chỉ có một ít trong số đó được sử dụng phổ biến. Ở đây, nó chỉ là một
+hướng dẫn - không hơn không kém, nhưng chúng được hệ thống hóa thông qua kinh
+nghiệm thu thập được qua nhiều năm của các tác giả của cuốn sách *Clean Code*
 
-Our craft of software engineering is just a bit over 50 years old, and we are
-still learning a lot. When software architecture is as old as architecture
-itself, maybe then we will have harder rules to follow. For now, let these
-guidelines serve as a touchstone by which to assess the quality of the
-JavaScript code that you and your team produce.
+Ngành kỹ thuật phần mềm chỉ phát triển được hơn 50 năm, và chúng ta vẫn
+đang học rất nhiều. Một khi kiến trúc phần mềm trở thành phổ biến, có lẽ sau đó
+chúng ta sẽ có thêm nhiều luật lệ khó hơn phải tuân theo. Còn giờ đây, 
+hãy để những hướng dẫn này như là một tiêu chuẩn để đánh giá chất lượng các đoạn 
+code Javascript mà bạn và team của bạn tạo ra.
 
-One more thing: knowing these won't immediately make you a better software
-developer, and working with them for many years doesn't mean you won't make
-mistakes. Every piece of code starts as a first draft, like wet clay getting
-shaped into its final form. Finally, we chisel away the imperfections when
-we review it with our peers. Don't beat yourself up for first drafts that need
-improvement. Beat up the code instead!
+Biết những hướng dẫn này thôi sẽ không thể ngay lập tức làm bạn trở thành một 
+lập trình viên phần mềm tốt hơn được, và làm việc với chúng trong nhiều năm 
+cũng không có nghĩa bạn sẽ không gặp bất cứ sai lầm nào. Mỗi đoạn code bắt đầu 
+như một bản thảo đầu tiên, giống như đất sét được nặn nhào và cho tới cuối cùng 
+thì nó sẽ lộ diện hình hài. Cuối cùng, chúng ta gọt tỉa những khuyết điểm khi
+chúng ta xem xét lại nó cùng với các đồng nghiệp. 
+Đừng để bản thân bạn bị đánh bại bởi những bản thảo đầu tiên, 
+thứ mà vẫn cần phải được chỉnh sửa. Thay vào đó hãy đánh bại những dòng code.
 
 ## **Biến**
 ### Sử dụng tên biến có nghĩa và dễ phát âm
