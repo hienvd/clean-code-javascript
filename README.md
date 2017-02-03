@@ -1479,11 +1479,11 @@ inventoryTracker.requestItems();
 ```
 **[⬆ về đầu trang](#mục-lục)**
 
-### Prefer ES2015/ES6 classes over ES5 plain functions
-It's very difficult to get readable class inheritance, construction, and method
-definitions for classical ES5 classes. If you need inheritance (and be aware
-that you might not), then prefer classes. However, prefer small functions over
-classes until you find yourself needing larger and more complex objects.
+### Ưu tiên lớp ES2015/ES6 hơn các chức năng thuần ES5
+Rất khó khăn để có thể đọc được lớp thừa kế, lớp khởi tạo, và các định nghĩa phương thức
+trong các class ES5 cổ điển. Nếu bạn cần kế thừa (và lưu ý rằng bạn có thể không),
+tốt hơn là nên sử dụng class. Tuy nhiên, những chức năng nhỏ sẽ tốt hơn các class 
+cho đến khi bạn thấy mình cần đối tượng lớn hơn và phức tạp hơn.
 
 **Không tốt:**
 ```javascript
@@ -1554,13 +1554,12 @@ class Human extends Mammal {
 ```
 **[⬆ về đầu trang](#mục-lục)**
 
-
-### Use method chaining
-This pattern is very useful in JavaScript and you see it in many libraries such
-as jQuery and Lodash. It allows your code to be expressive, and less verbose.
-For that reason, I say, use method chaining and take a look at how clean your code
-will be. In your class functions, simply return `this` at the end of every function,
-and you can chain further class methods onto it.
+### Sử dụng phương pháp các hàm liên tiếp nhau
+Mẫu này thì rất hữu ích trong JavaScript và bạn thấy nó trong rất nhiều thư viện
+chẳng hạn như jQuery và Lodash. Nó cho phép code của bạn truyền tải và ngắn gọn.
+Vì lý do đó, tôi nói, sử dụng phương pháp các hàm liên tiếp nhau và hãy xem code
+của bạn sẽ sạch sẽ như thế nào. Trong các hàm class, thông thường trả về `this`
+ở cuối mỗi hàm, và bạn có thể xâu chuỗi các phương thức lớp vào trong nó.
 
 **Không tốt:**
 ```javascript
@@ -1606,25 +1605,25 @@ class Car {
 
   setMake(make) {
     this.make = make;
-    // NOTE: Returning this for chaining
+    // Ghi chú: Trả về this để xâu chuỗi các phương thức
     return this;
   }
 
   setModel(model) {
     this.model = model;
-    // NOTE: Returning this for chaining
+    // Ghi chú: Trả về this để xâu chuỗi các phương thức
     return this;
   }
 
   setColor(color) {
     this.color = color;
-    // NOTE: Returning this for chaining
+    // Ghi chú: Trả về this để xâu chuỗi các phương thức
     return this;
   }
 
   save() {
     console.log(this.make, this.model, this.color);
-    // NOTE: Returning this for chaining
+    // Ghi chú: Trả về this để xâu chuỗi các phương thức
     return this;
   }
 }
@@ -1637,23 +1636,22 @@ const car = new Car()
 ```
 **[⬆ về đầu trang](#mục-lục)**
 
-### Prefer composition over inheritance
-As stated famously in [*Design Patterns*](https://en.wikipedia.org/wiki/Design_Patterns) by the Gang of Four,
-you should prefer composition over inheritance where you can. There are lots of
-good reasons to use inheritance and lots of good reasons to use composition.
-The main point for this maxim is that if your mind instinctively goes for
-inheritance, try to think if composition could model your problem better. In some
-cases it can.
+### Ưu tiên thành phần hơn là kế thừa
+Cũng như sự nổi tiếng trong [*Design Patterns*](https://en.wikipedia.org/wiki/Design_Patterns) của the Gang of Four, bạn nên sử dụng thành phần hơn là sử dụng thừa kế nếu bạn có thể.
+Có rất nhiều lý do tốt để sử dụng kế thừa và rất nhiều lý do tốt để sử dụng thành phần.
+Điểm nhấn cho phương châm này đó là nếu tâm trí của bạn đi theo bản năng thừa kế,
+thử nghĩ nếu thành phần có thể mô hình vấn đề của bạn tốt hơn. Trong một số trường 
+hợp nó có thể.
 
-You might be wondering then, "when should I use inheritance?" It
-depends on your problem at hand, but this is a decent list of when inheritance
-makes more sense than composition:
+Sau đó bạn có thể tự hỏi, "khi nào tôi nên sử dụng thừa kế?" Nó phụ thuộc vào
+vấn đề trong tầm tay của bạn, nhưng đây là một danh sách manh nha khi kế thừa
+có ý nghĩa hơn thành phần:
 
-1. Your inheritance represents an "is-a" relationship and not a "has-a"
-relationship (Human->Animal vs. User->UserDetails).
-2. You can reuse code from the base classes (Humans can move like all animals).
-3. You want to make global changes to derived classes by changing a base class.
-(Change the caloric expenditure of all animals when they move).
+1. Kế thừa của bạn đại diện cho mỗi quan hệ "is-a" và không có mỗi quan hệ "has-a"
+(Human->Animal vs. User->UserDetails).
+2. Bạn có thể sử dụng lại code từ lớp cơ bản (Humans có thể di chuyển giống tất cả Animals).
+3. Bạn muốn làm thay đổi toàn cục đến các lớp dẫn xuất bằng cách thay đổi lớp cơ bản.
+(Thay đổi lượng calo của tất cả animal khi chúng di chuyển)
 
 **Không tốt:**
 ```javascript
@@ -1666,7 +1664,8 @@ class Employee {
   // ...
 }
 
-// Bad because Employees "have" tax data. EmployeeTaxData is not a type of Employee
+// Không tốt bời vì Employees "có" dữ liệu thuế. 
+// EmployeeTaxData không phải là một loại của Employee
 class EmployeeTaxData extends Employee {
   constructor(ssn, salary) {
     super();
