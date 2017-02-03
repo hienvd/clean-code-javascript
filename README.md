@@ -200,34 +200,30 @@ function createMicrobrewery(breweryName = 'Hipster Brew Co.') {
 ## **Hàm**
 ### Đối số của hàm (lý tưởng là ít hơn hoặc bằng 2)
 Giới hạn số lượng param của hàm là một điều cực kì quan trọng bởi vì nó làm cho
-hàm của bạn trở nên dễ dàng hơn để test. Trường hợp có nhiều hơn 3 params
-có thể dẫn đến việc bạn phải test hàng tấn test case khác nhau với
-những đối số riêng biệt.
+hàm của bạn trở nên dễ test hơn. Trường hợp có nhiều hơn 3 params có thể dẫn
+đến việc bạn phải test hàng tấn test case khác nhau với những đối số riêng biệt.
 
-1 hoặc 2 đối số là trường hợp lý tưởng, còn trường hợp 3 đối số thì có thể
-sử dụng được nhưng chúng ta nên tránh đi là tốt hơn. Những trường hợp khác
-(từ 3 params trở lên) thì phải cân nhắc thật kỹ lưỡng để sử dụng. 
-Thông thường nếu bạn có nhiều hơn 2 đối số params thì function của bạn thường
-phải thực hiện nhiều hơn. Trong trường hợp ngược lại, phần lớn thời gian 
-#TODO
-more than two arguments then your function is trying to do too much. In cases
-where it's not, most of the time a higher-level object will suffice as an
-argument.
-#ENDTODO
+1 hoặc 2 đối số là trường hợp lý tưởng, còn trường hợp 3 đối số thì nên tránh
+nếu có thể. Những trường hợp khác (từ 3 params trở lên) thì nên được gộp lại.
+Thông thường nếu có nhiều hơn 2 đối số thì hàm của bạn đang cố thực hiện quá
+nhiều việc rồi đấy. Trong trường hợp ngược lại, phần lớn thời gian một đối
+tượng cấp cao sẽ là đủ để làm đối số.
 
-Ở Javascript cho phép bạn tạo một object với nhiều đối số, mà không có một
-class nào có sẵn, bạn có thể sử dụng một object nếu bạn đang tìm kiếm một phương
-pháp khác thay thế cho việc truyền nhiều đối số.
+Kể từ khi Javascript cho phép tạo nhiều đối tượng một cách nhanh chóng, mà
+không cần nhiều lớp có sẵn, bạn có thể sử dụng một đối tượng nếu bạn cần truyền
+nhiều đối số.
 
-Để những thuộc tính của chức năng dự kiến trở nên rõ ràng, bạn có thể sử dụng
-các cấu trúc của ES6 destructuring. Dưới đây là một số ưu điểm:
+Để làm cho rõ ràng một hàm mong đợi những thuộc tính gì, bạn có thể sử dụng
+cấu trúc destructuring của ES6. Điều này có một số ưu điểm:
 
-1. Khi một ai đó nhìn vào hàm, những thuộc tính sẽ trở nên rõ ràng ngay lập tức.
-2. Destructuring also clones the specified primitive values of the argument
-object passed into the function. This can help prevent side effects. Note:
-objects and arrays that are destructured from the argument object are NOT
-cloned.
-3. Linter có thể sẽ cảnh báo bạn về những thuộc tính không sử dụng, do đó nó sẽ phải có destructuring 
+1. Khi một ai đó nhìn vào hàm, những thuộc tính nào được sử dụng sẽ trở nên
+rõ ràng ngay lập tức.
+2. Destructuring cũng sao chép lại các giá trị ban đầu được chỉ định của đối
+tượng đối số được truyền vào hàm. Điều này có thể giúp ngăn chặn các ảnh hưởng
+phụ. Chú ý: các đối tượng và mảng được destructure từ đối tượng đối số thì không
+được sao chép lại.
+3. Linter có thể sẽ cảnh báo bạn về những thuộc tính không sử dụng, điều mà không
+thể xảy ra nếu không có destructuring.
 
 **Không tốt:**
 ```javascript
@@ -252,13 +248,13 @@ createMenu({
 **[⬆ Về đầu trang](#mục-lục)**
 
 
-### Chức năng chỉ nên giải quyết một vấn đề
-Đây là một quy định quan trọng của kỹ thuật phần mềm. Khi một hàm thực hiện
-nhiều hơn 1 vấn đề, chúng sẽ trở nên khó khăn hơn để viết code, test, và ....
-Khi bạn có thể tách riêng biệt một chức năng cho một action thì chúng có thể được
-refactor dễ dàng và code của bạn sẽ "sạch sẽ", dễ hiểu hơn. Nếu bạn chỉ cần làm
-theo hướng dẫn này thôi mà không cần làm gì khác thì bạn cũng đã giỏi hơn nhiều
-developer khác rồi. 
+### Hàm chỉ nên giải quyết một vấn đề
+Đây là quy định quan trọng nhất của kỹ thuật phần mềm. Khi một hàm thực hiện
+nhiều hơn 1 việc, chúng sẽ trở nên khó khăn hơn để viết code, test, và suy luận.
+Khi bạn có thể tách biệt một hàm để chỉ thực hiện một hành động, thì sẽ dễ dàng
+hơn để tái cấu trúc và code của bạn sẽ dễ đọc hơn nhiều. Nếu bạn chỉ cần làm theo
+hướng dẫn này thôi mà không cần làm gì khác thì bạn cũng đã giỏi hơn nhiều
+developer khác rồi.
 
 **Không tốt:**
 ```javascript
@@ -287,7 +283,7 @@ function isClientActive(client) {
 ```
 **[⬆ Về đầu trang](#mục-lục)**
 
-### Tên chức năng phải nói ra được những gì chúng làm
+### Tên hàm phải nói ra được những gì chúng làm
 
 **Không tốt:**
 ```javascript
@@ -297,7 +293,7 @@ function addToDate(date, month) {
 
 const date = new Date();
 
-// Thông qua tên chức năng, chúng ta rất khó để nhận biết rằng nó đã thêm cái gì
+// Khó để biết được hàm này thêm gì thông qua tên hàm.
 addToDate(date, 1);
 ```
 
@@ -312,9 +308,9 @@ addMonthToDate(1, date);
 ```
 **[⬆ Về đầu trang](#mục-lục)**
 
-### Chức năng chỉ nên có 1 lớp trừu tượng
-Khi bạn có nhiều hơn 1 lớp trừu tượng của chức năng thì thông thường làm rất nhiều.
-Chia nhỏ các chức năng thì việc tái sử dụng và testing sẽ dễ dàng hơn.
+### Hàm chỉ nên có một lớp trừu tượng
+Khi có nhiều hơn một lớp trừu tượng thì hàm của bạn đang làm quá nhiều. Chia
+nhỏ các hàm ra sẽ làm cho việc test và tái sử dụng dễ dàng hơn.
 
 **Không tốt:**
 ```javascript
@@ -379,25 +375,27 @@ function parseBetterJSAlternative(code) {
 ```
 **[⬆ Về đầu trang](#mục-lục)**
 
-### Xóa những dòng code trùng lặp
-Tuyệt đối tránh những dòng code trùng lặp. Code trùng lặp sẽ làm nó trở nên xấu xí
-bởi vì có nghĩa là có hơn 1 nơi để thay đổi một việc gì đó nếu bạn cần thay đổi logic.
+### Xóa code trùng lặp
+Tuyệt đối tránh những dòng code trùng lặp. Code trùng lặp thì không tốt bởi vì
+nếu bạn cần thay đổi cùng một logic, bạn phải sửa ở nhiều hơn một nơi.
 
 Hãy tưởng tượng nếu bạn điều hành một nhà hàng và bạn theo dõi hàng tồn kho:
-bao gồm cà chua, hành tây, tỏi, gia vị, vv.... Nếu bạn có nhiều danh sách quản lý,
-thì tất cả chúng phải được thay đổi khi bạn phục vụ một món ăn có chứa cà chua.
-Nếu bạn chỉ có 1 danh sách, thì việc cập nhật ở một nơi thôi.
+bao gồm cà chua, hành tây, tỏi, gia vị, vv.... Nếu bạn có nhiều danh sách
+quản lý, thì tất cả chúng phải được thay đổi khi bạn phục vụ một món ăn có
+chứa cà chua. Nếu bạn chỉ có 1 danh sách, thì việc cập nhật ở một nơi thôi.
 
-Thông thường, bạn có những dòng code lặp lại bởi vì bạn có 2 hay nhiều hơn một chút khác nhau giữa chúng,
-mà chúng chia sẻ nhau rất nhiều điều chung, nhưng sự khác nhau của chúng buộc bạn
-phải có 2 hay nhiều hàm riêng biệt để làm nhiều điều tương tự. Xóa đi những dòng code trùng
-có nghĩa là tạo ra những một khái niệm trừu tượng có thể xử lý tập hợp những điểm khác biệt này chỉ với một hàm/module/class.
+Thông thường, bạn có những dòng code lặp lại bởi vì bạn có 2 hay nhiều hơn
+những thứ chỉ khác nhau chút ít, mà chia sẻ nhiều thứ chung, nhưng sự khác
+nhau của chúng buộc bạn phải có 2 hay nhiều hàm riêng biệt để làm nhiều điều
+tương tự nhau. Xóa đi những dòng code trùng có nghĩa là tạo ra một abstraction
+có thể xử lý tập những điểm khác biệt này chỉ với một hàm/module hay class.
 
-Xây dựng trừu tượng hóa đúng đắn là rất quan trọng, đó là lý do tại sao bạn nên tuân thủ
-nguyên tắc SOLID được đặt ra trong phần *Classes*. Những lớp trừu tượng không tốt có thể
-còn tệ hơn cả những dòng code trùng lặp, vì thế hãy cẩn thận! Đã có người từng nói rằng, nếu bạn
-tạo được một lớp trừu tượng tốt, hãy làm nó! Đừng lặp lại chính mình, nếu không bạn sẽ phải tìm 
-chính mình để cập nhật nhiều nơi bất kì khi nào bạn muốn thay đổi một thứ.
+Có được một abstraction đúng thì rất quan trọng, đó là lý do tại sao bạn nên
+tuân thủ các nguyên tắc SOLID được đặt ra trong phần *Lớp*. Những abstraction
+không tốt có thể còn tệ hơn cả những dòng code bị trùng lặp, vì thế hãy cẩn
+thận! Nếu bạn có thể tạo ra một abstraction tốt, hãy làm nó! Đừng lặp lại chính
+mình, nếu bạn không muốn đi cập nhật nhiều nơi bất cứ khi nào bạn muốn thay đổi
+một thứ gì đó.
 
 **Không tốt:**
 ```javascript
@@ -457,7 +455,7 @@ function showList(employees) {
 ```
 **[⬆ Về đầu trang](#mục-lục)**
 
-### Thiết lập những object mặc định với Object.assign
+### Thiết lập những đối tượng mặc định với Object.assign
 
 **Không tốt:**
 ```javascript
@@ -495,7 +493,7 @@ function createMenu(config) {
     cancellable: true
   }, config);
 
-  // config bây giờ tương đương: {title: "Order", body: "Bar", buttonText: "Send", cancellable: true}
+  // config now equals: {title: "Order", body: "Bar", buttonText: "Send", cancellable: true}
   // ...
 }
 
@@ -504,9 +502,10 @@ createMenu(menuConfig);
 **[⬆ Về đầu trang](#mục-lục)**
 
 
-### Đừng sử dụng các cờ như một tham số hàm
-Các cờ cho người dùng của bạn biết rằng hàm có nhiều hơn 1 điều. Các hàm nên làm 1 chức năng.
-Hãy tách hàm nếu chúng đang theo một con đường code khác dựa trên một boolean.
+### Đừng sử dụng các cờ như đối số của hàm
+Các biến cờ cho người dùng của bạn biết rằng hàm thực hiện nhiều hơn một việc. Hàm
+chỉ nên làm một nhiệm vụ. Vì vậy hãy tách hàm của bạn nếu chúng đang làm cho code
+rẽ nhánh dựa trên một biến boolean.
 
 **Không tốt:**
 ```javascript
@@ -531,26 +530,27 @@ function createTempFile(name) {
 ```
 **[⬆ Về đầu trang](#mục-lục)**
 
-### Tránh ảnh hưởng phụ (phần 1)
-Một hàm tạo ra ảnh hưởng phụ nếu chúng có bất kì điều gì khác hơn là lấy một giá trị
-trong và trả về một hoặc nhiều giá trị. Ảnh hưởng phụ có thể được viết vào một file,
-thay đổi vài biến toàn cục, hoặc vô tình nối tất cả tiền của bạn tới một người lại mặt.
+### Tránh những ảnh hưởng phụ (phần 1)
+Một hàm tạo ra ảnh hưởng phụ nếu nó làm bất kì điều gì khác hơn là nhận một giá
+trị đầu vào và trả về một hoặc nhiều giá trị. Ảnh hưởng phụ có thể là ghi một
+file, thay đổi vài biến toàn cục, hoặc vô tình đưa tất cả tiền của bạn cho một
+người lạ.
 
-Bây giờ, thỉnh thoảng bạn cần phải có những ảnh hưởng phụ trong một chương trình. 
-Giống như ví dụ trước, bạn nên cân viết một file. Những gì bạn cần làm là tập trung
-vào nơi bạn sẽ làm nó. Đừng viết hàm và class riêng biệt để tạo ra một file cụ thể.
-Hãy có một service để viết nó. Một và chỉ một.
+Bây giờ, cũng có khi bạn cần ảnh hưởng phụ trong một chương trình. Giống như ví dụ
+trước, bạn cần ghi một file. Những gì bạn cần làm là tập trung vào nơi bạn sẽ làm
+nó. Đừng viết hàm và lớp riêng biệt để tạo ra một file cụ thể. Hãy có một service
+để viết nó. Một và chỉ một.
 
-Điểm chính là tránh lỗi chung giống như chia sẻ trạng thái giữa những object
-mà không có bất kì cấu trúc, sử dụng các loại dữ liệu có thể thay đổi có thể được
-tạo ra bởi bất kì điều gì, và không tập trung nơi có thể xảy ra các ảnh hưởng phụ.
-Nếu bạn có thể làm điều đó, bạn sẽ hạnh phúc hơn so với phần lớn các lập trình viên khác.
+Điểm chính là để tránh những lỗi chung như chia sẻ trạng thái giữa những đối tượng
+mà không có bất kì cấu trúc nào, sử dụng các kiểu dữ liệu có thể thay đổi được mà
+có thể được ghi bởi bất cứ thứ gì, và không tập trung nơi có thể xảy ra các ảnh hưởng
+phụ. Nếu bạn có thể làm điều đó, bạn sẽ hạnh phúc hơn so với phần lớn các lập trình
+viên khác đấy.
 
 **Không tốt:**
 ```javascript
 // Biến toàn cục được tham chiếu bởi hàm dưới đây.
-// Nếu chúng ta có một hàm khác mà sử dụng name, 
-// giờ thì nó muốn trở thành một array và nó có thể phá vỡ nó.
+// Nếu chúng ta có một hàm khác sử dụng name, nó sẽ trở thành một array
 let name = 'Ryan McDermott';
 
 function splitIntoFirstAndLastName() {
@@ -577,31 +577,34 @@ console.log(newName); // ['Ryan', 'McDermott'];
 **[⬆ Về đầu trang](#mục-lục)**
 
 ### Tránh những ảnh hưởng phụ (phần 2)
-Trong JavaScript, nguyên thủy được truyền theo giá trị và các đối tượng/mảng được 
-truyền tham chiếu. Trong trường hợp các đối tượng và mảng, ví dụ nếu những hàm của chúng ta
-tạo ra những thay trong trong một mảng giỏ mua hàng, bằng cách thêm một sản phẩm để mua,
-thì bất kì hàm khác mà sử dụng mảng 'giỏ' hàng sẽ bị ảnh hưởng bởi việc thêm này.
-Nó có thể tốt, tuy nhiên nó cũng có thể trở nên tồi tệ. Hãy tưởng tượng trường hợp tồi sau:
+Trong JavaScript, các kiểu cơ bản được truyền theo giá trị và các đối
+tượng/mảng được truyền theo tham chiếu. Trong trường hợp các đối tượng và mảng,
+ví dụ nếu hàm của chúng ta tạo ra thay đổi trong một mảng giỏ mua hàng, ví dụ
+thêm một sản phẩm để mua, thì bất kì hàm khác mà sử dụng mảng 'giỏ hàng' sẽ bị
+ảnh hưởng bởi việc thêm này. Điều này có thể tốt, tuy nhiên nó cũng có thể trở
+nên tồi tệ. Hãy tưởng tượng trường hợp xấu sau:
 
-Người sử dụng nhấp chuột vào "Mua", button gọi tới hàm `purchase` mà có thể sinh ra
-một yêu cầu mạng và gửi mảng `giỏ` lên server. Bởi vì kết nối chậm, chức năng `purchase`
-có thể giữ việc thử lại yêu cầu. Bây giờ, nếu trong thời gian đó người sử dụng
-vô tình nhấn chuột vào nút "Add to Cart"  trong một sản phẩm và yêu cầu mạng thực hiện,
-chức năng mua sẽ vô tình thêm một sản phẩm bởi vì nó có một tham chiếu đến mảng giỏ hàng
-mà hàm `addItemToCart` đã thay đổi bằng cách thêm vào một sản phẩm không mong muốn.
+Người sử dụng nhấp chuột "Mua hàng", nút mua hàng sẽ gọi tới hàm `mua`, cái mà
+sinh ra một yêu cầu mạng và gửi mảng `giỏ` lên server. Do kết nối chậm, hàm `mua`
+có thể giữ việc thử lại yêu cầu. Bây giờ, nếu trong thời gian đó người sử dụng vô
+tình nhấn chuột vào nút "Thêm vào giỏ hàng" ở một sản phẩm mà họ không thực sự muốn
+trước khi mạng thực hiện yêu cầu? Nếu điều đó xảy ra và mạng bắt đầu gửi yêu cầu
+thì hàm mua sẽ vô tình thêm một sản phẩm vì nó có một tham chiếu đế mảng giỏ hàng
+mà hàm `thêm sản phẩm vào giỏ hàng` đã thay đổi bằng cách thêm một sản phẩm mà họ
+không muốn.
 
-Một giải pháp tốt cho `addItemToCart` là luôn luôn tạo một bản sao `giỏ`,
-thay đổi nó, và trả về giá trị bản sao. Nó đảm bảo rằng không một chức năng nào có nắm giữ
-tham chiếu của giỏ mua hàng bị ảnh hưởng bởi bất kì thay đổi.
+Một giải pháp tốt là hàm `thêm sản phẩm vào giỏ hàng` luôn luôn tạo một bản sao của
+`giỏ`, thay đổi nó, và trả về bản sao đó. Điều này đảm bảo rằng không một hàm nào có
+nắm giữ tham chiếu của giỏ mua hàng bị ảnh hưởng bởi bất kì thay đổi.
 
-Hai điều cần cẩn thị khi thực hiện tới cách tiếp cận này:
-  1. Có thể có những trường hợp mà ở đó bạn thực sự muốn thay đổi đối tượng đầu vào,
-nhưng khi bạn áp dụng phương pháp lập trình này trong thực tiễn bạn sẽ phải tìm những 
-trường hợp là hiếm khi. Hầu hết các vấn đề có thể được cấu trúc lại để không bị ảnh hưởng phụ.
-  2. Nhân bản đối tượng lớn có thể sẽ làm hiệu suất mạnh. Thật may mắn, nó không phải là một
-vấn đề lớn trong thực tiễn bởi vì [great libraries](https://facebook.github.io/immutable-js/)
-cho phép những cách tiếp cận trở nên nhanh và ít tốn bộ nhớ vì nó sẽ cho bạn tự tạo những 
-đối tượng và mảng.
+Hai lưu ý cho cách tiếp cận này:
+  1. Có thể có những trường hợp mà bạn thực sự muốn thay đổi đối tượng đầu vào, nhưng
+  khi bạn áp dụng phương pháp này bạn sẽ thấy những trường hợp này thì hiếm. Hầu hết
+  các vấn đề có thể được cấu trúc lại để không còn ảnh hưởng phụ.
+  2. Nhân bản các đối tượng lớn có thể ảnh hưởng đến hiệu năng. May mắn thay, đó không
+  phải là một vấn đề lớn trong thực tế bởi vì có [immutable-js](https://facebook.github.io/immutable-js/)
+  cho phép cách tiếp cận này trở nên nhanh và ít tốn bộ nhớ so với khi bạn tự sao chép
+  những đối tượng và mảng.
 
 **Không tốt:**
 ```javascript
@@ -619,16 +622,17 @@ const addItemToCart = (cart, item) => {
 
 **[⬆ Về đầu trang](#mục-lục)**
 
-### Don't write to global functions
-Ô nhiễm toàn cục là một thực tiễn xấu trong JavaScript bởi vì bạn có thể xung đột với 
-thư viện khác và người dùng API của bạn có thể không phải là người khôn ngoan cho đến khi
-họ nhận ra được những ngoại lệ trong sản phẩm. Ví dụ: bạn sẽ làm gì nếu bạn muốn mở rộng
-mảng JavaScript native để có một phương thức `diff` mà có thể đưa ra những 
-sự khác nhau giữa hai mảng? Bạn có thể viết một hàm mới với `Array.prototype`,
-nhưng nó có thể xung đột với một thư viện khác mà đã cố gắng để làm những điều tương tự.
-Điều gì xảy ra nếu một thư viện chỉ sử dụng `diff` để tìm sự khác biệt giữa phần tử 
-đầu tiên và cuối cùng của một mảng? Đó là lý do tại sao nó sẽ là tốt hơn khi 
-chỉ sử dụng cá lớp ES2015/ES6 và đơn giản mở rộng `Array` toàn cục.
+### Đừng ghi lên những hàm toàn cục
+Gây ảnh hưởng đến các biến toàn cục là một bad practice trong JavaScript vì bạn
+có thể xung đột với các thư viện khác và người dùng API của bạn sẽ không biết
+trước được cho đến khi cho một lỗi xảy ra trên sản phẩm. Hãy suy nghĩ ví dụ này:
+điều gì xảy ra nếu bạn muốn mở rộng phương thức của Array trong JavaScript native
+để có thể có một hàm `diff` chỉ ra sự khác nhau giữa hai mảng? Bạn có thể viết một
+hàm mới với `Array.prototype`, nhưng nó có thể xung đột với một thư viện khác mà
+đã làm những điều tương tự. Điều gì xảy ra nếu thư viện đó chỉ sử dụng `diff` để
+tìm sự khác biệt giữa phần tử đầu tiên và cuối cùng của một mảng? Đó là lý do tại
+sao sẽ là tốt hơn nhiều khi chỉ sử dụng các lớp ES2015/ES6 và đơn giản mở rộng
+`Array` toàn cục.
 
 **Không tốt:**
 ```javascript
@@ -649,10 +653,10 @@ class SuperArray extends Array {
 ```
 **[⬆ Về đầu trang](#mục-lục)**
 
-### Ủng hộ lập trình chức năng trên lập trình không bắt buộc
-JavaScript không phải là ngôn ngữ chức năng trong cái của Haskell, nhưng nó có
-đặc trưng chức năng của nó. Những ngôn ngữ chức năng thì gọn gàng hơn và dễ dàng hơn
-để kiểm thử. Hãy ủng hộ phong cách lập trình khi bạn có thể.
+### Ủng hộ lập trình hàm hơn là lập trình mệnh lệnh
+JavaScript không phải là ngôn ngữ lập trình hàm giống như là Haskell, nhưng nó có
+đặc trưng hàm của nó. Những ngôn ngữ lập trình hàm thì gọn gàng hơn và dễ test hơn.
+Hãy dùng cách lập trình này khi bạn có thể.
 
 **Không tốt:**
 ```javascript
@@ -705,7 +709,7 @@ const totalOutput = programmerOutput
 ```
 **[⬆ Về đầu trang](#mục-lục)**
 
-### Đóng gói điều kiện
+### Đóng gói các điều kiện
 
 **Không tốt:**
 ```javascript
@@ -752,14 +756,14 @@ if (isDOMNodePresent(node)) {
 **[⬆ Về đầu trang](#mục-lục)**
 
 ### Tránh điều kiện
-Đây dường như giống một công việc bất khả thi. Sau khi nghe điều này đầu tiên,
-hầu hết mọi người đều nói, "Tôi tin rằng tôi sẽ không thể làm gì mà không có
-mệnh đề `if`?" Câu trả lời là bạn có thể sử dụng tính đa hình để đạt được công việc
-tương tự trong rất nhiều trường hợp. Câu hỏi thứ hay thường là "đó là điều tốt 
-nhưng tại sao tôi lại muốn làm điều đó?" Câu trả lời là khái niệm code sạch sẽ trước
-chúng ta đã học: một hàm nên thực hiện 1 công việc. Khi bạn có nhiều class và hàm
-mà có nhiều mệnh đề `if`, bạn đang nói người dùng của bạn rằng hàm của bạn 
-đang làm hơn 1 công việc. Hãy nhớ, chỉ làm một công việc.
+Đây dường như là một việc bất khả thi. Khi nghe điều này đầu tiên, hầu hết mọi
+người đều nói, "Làm sao tôi cần phải làm gì mà không có mệnh đề `if`?"
+Câu trả lời là bạn có thể sử dụng tính đa hình để đạt được công việc tương tự
+trong rất nhiều trường hợp. Câu hỏi thứ hai thường là "Đó là điều tốt nhưng tại
+sao tôi lại muốn làm điều đó?" Câu trả lời là khái niệm mà ta đã học ở phần
+trước: một hàm chỉ nên thực hiện một việc. Khi bạn có nhiều lớp và hàm mà có
+nhiều mệnh đề `if`, bạn đang cho người dùng của bạn biết rằng hàm của bạn đang
+làm nhiều hơn một việc. Hãy nhớ, chỉ làm một công việc thôi.
 
 **Không tốt:**
 ```javascript
@@ -807,11 +811,11 @@ class Cessna extends Airplane {
 ```
 **[⬆ Về đầu trang](#mục-lục)**
 
-### Tránh kiểm tra loại (phần 1)
-JavaScript không định kiểu, nó có nghĩa hàm của bạn có thể mang bất kì loại của đối số.
-Đôi khi bạn có cảm giác như bị cắn bởi sự tụ do này và nó trở nên hấp dẫn để làm kiểm tra loại
-trong hàm của bạn. Có rất nhiều cách để tránh phải làm điều này. 
-Điều đầu tiên để xem xét là các API nhất quán.
+### Tránh kiểm tra kiểu (phần 1)
+JavaScript không định kiểu, có nghĩa hàm của bạn có thể nhận bất kì đối số
+kiểu nào. Đôi khi bạn bị cám dỗ bởi sự tự do này và dễ dẫn đến việc đi kiểm
+tra kiểu trong hàm của mình. Có nhiều cách để tránh phải làm điều này. Điều
+đầu tiên là xem xét sử dụng các API nhất quán.
 
 **Không tốt:**
 ```javascript
@@ -832,18 +836,16 @@ function travelToTexas(vehicle) {
 ```
 **[⬆ Về đầu trang](#mục-lục)**
 
-### Tránh kiểm tra loại (phần 2)
-Nếu bạn đang làm với kiểu giá trị nguyên thủy cơ bản như string, integer và array,
-và bạn không thể sử dụng đa hình nhưng bạn vẫn cảm thấy cần thiết kiểm tra loại,
-bạn nên xem xét sử dụng TypeScript. Nó là một phương pháp thay thế tuyệt vời
-cho JavaScript thông thường, vì nó cung cấp bạn cùng với gõ tính trên đỉnh của 
-cú pháp JavaScript chuẩn. Vấn đề với kiểm tra loại thủ công JavaScript thông thường là
-làm nó cũng đòi hỏi rất nhiều 
-(The problem with manually type-checking normal JavaScript is that
-doing it well requires so much extra verbiage that the faux "type-safety" you get
-doesn't make up for the lost readability).
-Hãy giữ JavaScript của bạn sạch sẽ, viết test tốt và có duyệt code tốt. Nếu không thì
-thực hiện tất cả những điều đó nhưng với TypeScript (giống như tôi đã nói, đó là sự thay thế tốt)
+### Tránh kiểm tra kiểu (phần 2)
+Nếu bạn làm việc với các kiểu cơ bản như chuỗi, số nguyên và mảng, và bạn không
+thể  sử dụng đa hình nhưng bạn vẫn cảm thấy cần phải kiểm tra kiểu, bạn nên xem
+xét sử dụng TypeScript. Nó là một phương pháp thay thế tuyệt vời cho JavaScript
+thường, vì nó cung cấp kiểu tĩnh ngoài cú pháp JavaScript chuẩn. Vấn đề với việc
+kiểm tra kiểu thủ công là để làm tốt việc này đòi hỏi nhiều sự dài dòng mà
+"kiểu an toàn" giả này không thay thế được cho việc mất đi tính dễ đọc của code.
+Hãy giữ code JavaScript của bạn sạch sẽ, viết test tốt và có reviews code tốt.
+Nếu không thì thực hiện tất cả những điều đó nhưng với TypeScript (giống như tôi
+đã nói, đó là sự thay thế tốt!).
 
 **Không tốt:**
 ```javascript
@@ -866,17 +868,17 @@ function combine(val1, val2) {
 **[⬆ Về đầu trang](#mục-lục)**
 
 ### Đừng quá tối ưu
-Những trình duyệt hiện đại làm rất nhiều tối ưu hóa bên dưới trong thời thời gian chạy.
-Rất nhiều lần, nếu bạn đang tối ưu thì bạn đang làm tốn thời gian của chính mình.
-[Đây là nguồn](https://github.com/petkaantonov/bluebird/wiki/Optimization-killers)
-để tìm kiếm nơi tối ưu hóa là thiếu. Nhằm vào những người trong khi chờ đợi, 
-cho đến khi chúng được cố định nếu họ có thể.
+Những trình duyệt hiện đại làm rất nhiều tối ưu hóa bên dưới trong thời gian
+chạy. Rất nhiều lần, nếu bạn đang tối ưu thì bạn đang làm tốn thời gian của
+chính mình. [Xem ở đây](https://github.com/petkaantonov/bluebird/wiki/Optimization-killers)
+để biết khi nào việc tối ưu hóa là thiếu. Hãy thực hiện những tối ưu đó và cho
+đến khi chúng được sửa nếu có thể.
 
 **Không tốt:**
 ```javascript
 
-// Trên các trình duyệt cũ, mỗi lần lặp với uncached 'list.length` sẽ tốn kém
-// vì của `toán lại list.length`. Trong các trình duyệt hiện đại, điều này được tối ưu hóa.
+// Trên các trình duyệt cũ, mỗi lần lặp với 'list.length` chưa được cache sẽ tốn kém
+// vì `list.length` sẽ được tính lại. Trong các trình duyệt hiện đại, điều này đã được tối ưu.
 for (let i = 0, len = list.length; i < len; i++) {
   // ...
 }
@@ -890,9 +892,9 @@ for (let i = 0; i < list.length; i++) {
 ```
 **[⬆ Về đầu trang](#mục-lục)**
 
-### Xóa dead code
+### Xóa code chết (dead code)
 Dead code cũng tệ như code trùng lặp. Không có lý do gì để giữ chúng lại trong
-codebase của bạn. Nếu nó không được gọi, gạt nó ra!  sẽ vẫn được an toàn trong 
+codebase của bạn. Nếu nó không được gọi nữa, hãy bỏ nó đi! Nó vẫn sẽ nằm trong
 lịch sử phiên bản của bạn nếu bạn vẫn cần nó.
 
 **Không tốt:**
