@@ -3,7 +3,7 @@ Original Repository: [ryanmcdermott/clean-code-javascript](https://github.com/ry
 # clean-code-javascript
 
 ## Mục lục
-  1. [Giới thiệu](#gioi-thieu)
+  1. [Giới thiệu](#giới-thiệu)
   2. [Biến](#biến)
   3. [Hàm](#hàm)
   4. [Đối tượng và Cấu trúc dữ liệu](#đối-tượng-và-cấu-trúc-dữ-liệu)
@@ -29,17 +29,17 @@ nghiệm thu thập được qua nhiều năm của các tác giả của cuốn
 
 Ngành kỹ thuật phần mềm chỉ phát triển được hơn 50 năm, và chúng ta vẫn
 đang học rất nhiều. Một khi kiến trúc phần mềm trở thành phổ biến, có lẽ sau đó
-chúng ta sẽ có thêm nhiều luật lệ khó hơn phải tuân theo. Còn giờ đây, 
-hãy để những hướng dẫn này như là một tiêu chuẩn để đánh giá chất lượng các đoạn 
+chúng ta sẽ có thêm nhiều luật lệ khó hơn phải tuân theo. Còn giờ đây,
+hãy để những hướng dẫn này như là một tiêu chuẩn để đánh giá chất lượng các đoạn
 code Javascript mà bạn và team của bạn tạo ra.
 
-Biết những hướng dẫn này thôi sẽ không thể ngay lập tức làm bạn trở thành một 
-lập trình viên phần mềm tốt hơn được, và làm việc với chúng trong nhiều năm 
-cũng không có nghĩa bạn sẽ không gặp bất cứ sai lầm nào. Mỗi đoạn code bắt đầu 
-như một bản thảo đầu tiên, giống như đất sét được nặn nhào và cho tới cuối cùng 
+Biết những hướng dẫn này thôi sẽ không thể ngay lập tức làm bạn trở thành một
+lập trình viên phần mềm tốt hơn được, và làm việc với chúng trong nhiều năm
+cũng không có nghĩa bạn sẽ không gặp bất cứ sai lầm nào. Mỗi đoạn code bắt đầu
+như một bản thảo đầu tiên, giống như đất sét được nặn nhào và cho tới cuối cùng
 thì nó sẽ lộ diện hình hài. Cuối cùng, chúng ta gọt tỉa những khuyết điểm khi
-chúng ta xem xét lại nó cùng với các đồng nghiệp. 
-Đừng để bản thân bạn bị đánh bại bởi những bản thảo đầu tiên, 
+chúng ta xem xét lại nó cùng với các đồng nghiệp.
+Đừng để bản thân bạn bị đánh bại bởi những bản thảo đầu tiên,
 thứ mà vẫn cần phải được chỉnh sửa. Thay vào đó hãy đánh bại những dòng code.
 
 ## **Biến**
@@ -432,7 +432,7 @@ function showManagerList(managers) {
 
 **Tốt:**
 ```javascript
-function showList(employees) {
+function showEmployeeList(employees) {
   employees.forEach((employee) => {
     const expectedSalary = employee.calculateExpectedSalary();
     const experience = employee.getExperience();
@@ -1252,17 +1252,9 @@ class Shape {
 }
 
 class Rectangle extends Shape {
-  constructor() {
+  constructor(width, height) {
     super();
-    this.width = 0;
-    this.height = 0;
-  }
-
-  setWidth(width) {
     this.width = width;
-  }
-
-  setHeight(height) {
     this.height = height;
   }
 
@@ -1272,12 +1264,8 @@ class Rectangle extends Shape {
 }
 
 class Square extends Shape {
-  constructor() {
+  constructor(length) {
     super();
-    this.length = 0;
-  }
-
-  setLength(length) {
     this.length = length;
   }
 
@@ -1288,21 +1276,12 @@ class Square extends Shape {
 
 function renderLargeShapes(shapes) {
   shapes.forEach((shape) => {
-    switch (shape.constructor.name) {
-      case 'Square':
-        shape.setLength(5);
-        break;
-      case 'Rectangle':
-        shape.setWidth(4);
-        shape.setHeight(5);
-    }
+      const area = shape.getArea();
+      shape.render(area);
+    });
+  }
 
-    const area = shape.getArea();
-    shape.render(area);
-  });
-}
-
-const shapes = [new Rectangle(), new Rectangle(), new Square()];
+const shapes = [new Rectangle(4, 5), new Rectangle(4, 5), new Square(5)];
 renderLargeShapes(shapes);
 ```
 **[⬆ back to top](#mục-lục)**
