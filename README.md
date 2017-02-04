@@ -1481,9 +1481,9 @@ inventoryTracker.requestItems();
 
 ### Ưu tiên lớp ES2015/ES6 hơn các chức năng thuần ES5
 Rất khó khăn để có thể đọc được lớp thừa kế, lớp khởi tạo, và các định nghĩa phương thức
-trong các class ES5 cổ điển. Nếu bạn cần kế thừa (và lưu ý rằng bạn có thể không),
-tốt hơn là nên sử dụng class. Tuy nhiên, những chức năng nhỏ sẽ tốt hơn các class 
-cho đến khi bạn thấy mình cần đối tượng lớn hơn và phức tạp hơn.
+trong các lớp ES5 cổ điển. Nếu bạn cần kế thừa (và lưu ý rằng bạn có thể không),
+tốt hơn là nên sử dụng lớp. Tuy nhiên ưu tiên sử dụng những hàm nhỏ hơn là lớp cho
+đến khi bạn cần những đối tượng lớn và phức tạp hơn.
 
 **Không tốt:**
 ```javascript
@@ -1554,12 +1554,13 @@ class Human extends Mammal {
 ```
 **[⬆ về đầu trang](#mục-lục)**
 
-### Sử dụng phương pháp các hàm liên tiếp nhau
-Mẫu này thì rất hữu ích trong JavaScript và bạn thấy nó trong rất nhiều thư viện
-chẳng hạn như jQuery và Lodash. Nó cho phép code của bạn truyền tải và ngắn gọn.
-Vì lý do đó, tôi nói, sử dụng phương pháp các hàm liên tiếp nhau và hãy xem code
-của bạn sẽ sạch sẽ như thế nào. Trong các hàm class, thông thường trả về `this`
-ở cuối mỗi hàm, và bạn có thể xâu chuỗi các phương thức lớp vào trong nó.
+### Sử dụng các hàm liên tiếp nhau
+Đây là một pattern rất hữu ích trong JavaScript và bạn thấy nó trong rất
+nhiều thư viện chẳng hạn như jQuery và Lodash. Nó cho phép code của bạn
+có tính truyền tải và ngắn gọn. Vì lý do đó, theo tôi, sử dụng phương pháp
+các hàm liên tiếp nhau và hãy xem code của bạn sẽ sạch sẽ như thế nào. Trong
+các hàm của lớp, đơn giản là trả về `this` ở cuối mỗi hàm, và bạn có thể xâu
+chuỗi các phương thức khác vào trong nó.
 
 **Không tốt:**
 ```javascript
@@ -1637,13 +1638,14 @@ const car = new Car()
 **[⬆ về đầu trang](#mục-lục)**
 
 ### Ưu tiên thành phần hơn là kế thừa
-Cũng như sự nổi tiếng trong [*Design Patterns*](https://en.wikipedia.org/wiki/Design_Patterns) của the Gang of Four, bạn nên sử dụng thành phần hơn là sử dụng thừa kế nếu bạn có thể.
-Có rất nhiều lý do tốt để sử dụng kế thừa và rất nhiều lý do tốt để sử dụng thành phần.
+Như đã được nhấn mạnh nhiều trong [*Design Patterns*](https://en.wikipedia.org/wiki/Design_Patterns)
+của Gang of Four, bạn nên sử dụng cấu trúc thành phần hơn là thừa kế nếu có thể.
+Có rất nhiều lý do tốt để sử dụng kế thừa cũng như sử dụng thành phần.
 Điểm nhấn cho phương châm này đó là nếu tâm trí của bạn đi theo bản năng thừa kế,
-thử nghĩ nếu thành phần có thể mô hình vấn đề của bạn tốt hơn. Trong một số trường 
+thử nghĩ nếu thành phần có thể mô hình vấn đề của bạn tốt hơn. Trong một số trường
 hợp nó có thể.
 
-Sau đó bạn có thể tự hỏi, "khi nào tôi nên sử dụng thừa kế?" Nó phụ thuộc vào
+Bạn có thể tự hỏi, "khi nào tôi nên sử dụng thừa kế?" Nó phụ thuộc vào
 vấn đề trong tầm tay của bạn, nhưng đây là một danh sách manh nha khi kế thừa
 có ý nghĩa hơn thành phần:
 
@@ -1664,7 +1666,7 @@ class Employee {
   // ...
 }
 
-// Không tốt bời vì Employees "có" dữ liệu thuế. 
+// Không tốt bởi vì Employees "có" dữ liệu thuế.
 // EmployeeTaxData không phải là một loại của Employee
 class EmployeeTaxData extends Employee {
   constructor(ssn, salary) {
