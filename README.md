@@ -7,7 +7,7 @@ Original Repository: [ryanmcdermott/clean-code-javascript](https://github.com/ry
   2. [Biến](#biến)
   3. [Hàm](#hàm)
   4. [Đối tượng và Cấu trúc dữ liệu](#Đối-tượng-và-cấu-trúc-dữ-liệu)
-  5. [Classes](#classes)
+  5. [Lớp](#lớp)
   6. [Testing](#testing)
   7. [Xử lí đồng thời](#xử-lí-đồng-thời)
   8. [Xử lí lỗi](#xử-lí-lỗi)
@@ -1025,18 +1025,18 @@ console.log(`Employee name: ${employee.getName()}`); // Employee name: John Doe
 **[⬆ về đầu trang](#mục-lục)**
 
 
-## **Classes**
-### Single Responsibility Principle (SRP)
-As stated in Clean Code, "There should never be more than one reason for a class
-to change". It's tempting to jam-pack a class with a lot of functionality, like
-when you can only take one suitcase on your flight. The issue with this is
-that your class won't be conceptually cohesive and it will give it many reasons
-to change. Minimizing the amount of times you need to change a class is important.
-It's important because if too much functionality is in one class and you modify a piece of it,
-it can be difficult to understand how that will affect other dependent modules in
-your codebase.
+## **Lớp**
+### Nguyên lí đơn trách nhiệm (Single Responsibility Principle)
+Như đã được nói đến trong cuốn Clean Code, "Chỉ có thể thay đổi một lớp vì một lí
+do duy nhất". Thật là hấp dẫn để nhồi nhét nhiều chức năng vào cho một lớp, giống
+như là khi bạn chỉ có thể lấy một chiếc vali cho chuyến bay vậy. Vấn đề là lớp của
+bạn sẽ không được hiểu gắn kết về mặt khái niệm của nó và sẽ có rất nhiều lí do
+để thay đổi. Việc làm giảm thiểu số lần bạn cần phải thay đổi một lớp là một việc
+quan trọng. Nó quan trọng bởi vì nếu có quá nhiều chức năng trong một lớp và bạn
+chỉ muốn thay đổi một chút xíu của lớp đó, thì có thể sẽ rất khó để hiểu được việc
+thay đổi đó sẽ ảnh hưởng đến những module khác trong codebase của bạn như thế nào.
 
-**Bad:**
+**Không tốt:**
 ```javascript
 class UserSettings {
   constructor(user) {
@@ -1055,7 +1055,7 @@ class UserSettings {
 }
 ```
 
-**Good:**
+**Tốt:**
 ```javascript
 class UserAuth {
   constructor(user) {
@@ -1081,15 +1081,15 @@ class UserSettings {
   }
 }
 ```
-**[⬆ back to top](#mục-lục)**
+**[⬆ về đầu trang](#mục-lục)**
 
-### Open/Closed Principle (OCP)
-As stated by Bertrand Meyer, "software entities (classes, modules, functions,
-etc.) should be open for extension, but closed for modification." What does that
-mean though? This principle basically states that you should allow users to
-add new functionalities without changing existing code.
+### Nguyên lí đóng mở (Open/Closed Principle)
+Betrand Meyer đã nói "có thể thoải mái mở rộng một module, nhưng hạn chế sửa
+đổi bên trong module đó". Điều đó nghĩa là gì? Nguyên tắc này cơ bản nhấn mạnh
+rằng bạn phải cho phép người dùng thêm các chức năng mới mà không làm thay
+đổi các code đang có.
 
-**Bad:**
+**Không tốt:**
 ```javascript
 class AjaxAdapter extends Adapter {
   constructor() {
@@ -1132,7 +1132,7 @@ function makeHttpCall(url) {
 }
 ```
 
-**Good:**
+**Tốt:**
 ```javascript
 class AjaxAdapter extends Adapter {
   constructor() {
@@ -1168,24 +1168,26 @@ class HttpRequester {
   }
 }
 ```
-**[⬆ back to top](#mục-lục)**
+**[⬆ về đầu trang](#mục-lục)**
 
 
-### Liskov Substitution Principle (LSP)
-This is a scary term for a very simple concept. It's formally defined as "If S
-is a subtype of T, then objects of type T may be replaced with objects of type S
-(i.e., objects of type S may substitute objects of type T) without altering any
-of the desirable properties of that program (correctness, task performed,
-etc.)." That's an even scarier definition.
+### Nguyên lí thay thế Liskov (Liskov Substitution Principle)
+Đây là một thuật ngữ đáng sợ cho một khái niệm rất đơn giản. Nó được định nghĩa
+một cách chính thức là: "Nếu S là một kiểu con của T, thì các đối tượng của kiểu
+T có thể được thay thế bằng các đối tượng của kiểu S (ví dụ các đối tượng của
+kiểu S có thể thay thế các đối tượng của kiểu T) mà không làm thay đổi bất kì thuộc
+tính mong muốn nào của chương trình đó (tính chính xác, thực hiện tác vụ, ..).
+Đó thậm chí còn là một định nghĩa đáng sợ hơn.
 
-The best explanation for this is if you have a parent class and a child class,
-then the base class and child class can be used interchangeably without getting
-incorrect results. This might still be confusing, so let's take a look at the
-classic Square-Rectangle example. Mathematically, a square is a rectangle, but
-if you model it using the "is-a" relationship via inheritance, you quickly
-get into trouble.
+Sự giải thích tốt nhất cho nguyên lí này là, nếu bạn có một lớp cha và một lớp con,
+thì lớp cơ sở và lớp con có thể được sử dụng thay thế cho nhau mà không làm thay
+đổi tính đúng đắn của chương trình. Có thể vẫn còn hơi rối ở đây, vậy hãy xem
+cái ví dụ cổ điển hình vuông-hình chữ nhật (Square-Rectangle) dưới đây. Về mặt
+toán học, một hình vuông là một hình chữ nhật, tuy nhiên nếu bạn mô hình hoá điều
+này sử dụng quan hệ "is a" thông qua việc kế thừa, bạn sẽ nhanh chóng gặp phải
+rắc rối đấy.
 
-**Bad:**
+**Không tốt:**
 ```javascript
 class Rectangle {
   constructor() {
@@ -1239,7 +1241,7 @@ const rectangles = [new Rectangle(), new Rectangle(), new Square()];
 renderLargeRectangles(rectangles);
 ```
 
-**Good:**
+**Tốt:**
 ```javascript
 class Shape {
   setColor(color) {
@@ -1284,23 +1286,25 @@ function renderLargeShapes(shapes) {
 const shapes = [new Rectangle(4, 5), new Rectangle(4, 5), new Square(5)];
 renderLargeShapes(shapes);
 ```
-**[⬆ back to top](#mục-lục)**
+**[⬆ về đầu trang](#mục-lục)**
 
-### Interface Segregation Principle (ISP)
-JavaScript doesn't have interfaces so this principle doesn't apply as strictly
-as others. However, it's important and relevant even with JavaScript's lack of
-type system.
+### Nguyên lí phân tách interface (Interface Segregation Principle)
 
-ISP states that "Clients should not be forced to depend upon interfaces that
-they do not use." Interfaces are implicit contracts in JavaScript because of
-duck typing.
+JavaScript không có interface vì vậy nguyên lí này không áp dụng một cách
+chặt chẽ như các nguyên lí khác. Tuy nhiên, nó cũng quan trọng và liên quan
+ngay cả với hệ thống thiếu định kiểu của JavaScript.
 
-A good example to look at that demonstrates this principle in JavaScript is for
-classes that require large settings objects. Not requiring clients to setup
-huge amounts of options is beneficial, because most of the time they won't need
-all of the settings. Making them optional helps prevent having a "fat interface".
+Nguyên lí phân tách interface nhấn mạnh rằng "Người dùng không nên bị bắt
+buộc phải phụ thuộc vào các interfaces mà họ không sử dụng." Interface là
+những ràng buộc ẩn trong JavaScript bởi vì duck typing.
 
-**Bad:**
+Một ví dụ tốt để minh hoạ cho nguyên lí này trong JavaScript là các lớp mà yêu
+cầu cài đặt các đối tượng lớn. Việc không yêu cầu người dùng thiết lập một số
+lượng lớn các tuỳ chọn là một ích lợi, bởi vì đa số thời gian họ không cần tất
+cả các cài đặt. Làm cho chúng trở thành tuỳ chọn giúp tránh được việc có một
+"fat interface".
+
+**Không tốt:**
 ```javascript
 class DOMTraverser {
   constructor(settings) {
@@ -1326,7 +1330,7 @@ const $ = new DOMTraverser({
 
 ```
 
-**Good:**
+**Tốt:**
 ```javascript
 class DOMTraverser {
   constructor(settings) {
@@ -1358,30 +1362,29 @@ const $ = new DOMTraverser({
   }
 });
 ```
-**[⬆ back to top](#mục-lục)**
+**[⬆ về đầu trang](#mục-lục)**
 
-### Dependency Inversion Principle (DIP)
-This principle states two essential things:
-1. High-level modules should not depend on low-level modules. Both should
-depend on abstractions.
-2. Abstractions should not depend upon details. Details should depend on
-abstractions.
+### Nguyên lí đảo ngược dependency (Dependency Inversion Principle)
+Nguyên lí này khẳng định hai điều cần thiết sau:
+1. Nhưng module cấp cao không nên phụ thuộc vào những module cấp thấp. Cả
+hai nên phụ thuộc vào abstraction.
+2. Abstraction (interface) không nên phụ thuộc vào chi tiết, mà ngược lại.
 
-This can be hard to understand at first, but if you've worked with Angular.js,
-you've seen an implementation of this principle in the form of Dependency
-Injection (DI). While they are not identical concepts, DIP keeps high-level
-modules from knowing the details of its low-level modules and setting them up.
-It can accomplish this through DI. A huge benefit of this is that it reduces
-the coupling between modules. Coupling is a very bad development pattern because
-it makes your code hard to refactor.
+Điều này có thể khó hiểu lúc ban đầu, nhưng nếu bạn đã từng làm việc với Angular.js,
+bạn đã thấy một sự hiện thực của nguyên lí này trong dạng của Dependency Injection
+(DI). Khi chúng không phải là các khái niệm giống nhau, DIP giữ cho module cấp
+cao không biết chi tiết các module cấp thấp của nó và thiết lập chúng. Có thể đạt
+được điều này thông qua DI. Một lợi ích to lớn của DIP là nó làm giảm sự phụ thuộc
+lẫn nhau giữa các module. Sự phụ thuộc lẫn nhau là một kiểu mẫu không tốt, vì nó
+làm cho việc tái cấu trúc code trở nên khó khăn.
 
-As stated previously, JavaScript doesn't have interfaces so the abstractions
-that are depended upon are implicit contracts. That is to say, the methods
-and properties that an object/class exposes to another object/class. In the
-example below, the implicit contract is that any Request module for an
-`InventoryTracker` will have a `requestItems` method.
+Như đã khẳng định ở trước, JavaScript không có interface vì vậy các abstraction
+mà bị phụ thuộc là những ràng buộc ẩn. Đó là để nói, các phương thức và thuộc tính
+mà một đối tượng/lớp làm phơi bày đối tượng/lớp khác. Trong ví dụ bên dưới, sự ràng
+buộc ẩn là bất cứ module Request cho một `InventoryRequester` sẽ có một phương thức
+`requestItems`.
 
-**Bad:**
+**Không tốt:**
 ```javascript
 class InventoryRequester {
   constructor() {
@@ -1397,8 +1400,8 @@ class InventoryTracker {
   constructor(items) {
     this.items = items;
 
-    // BAD: We have created a dependency on a specific request implementation.
-    // We should just have requestItems depend on a request method: `request`
+    // Không tốt: chúng ta đã tạo một phụ thuộc vào một hiện thực của một request cụ thể
+    // Chúng ta nên có những requestItems phụ thuộc vào một phương thức request `request`
     this.requester = new InventoryRequester();
   }
 
@@ -1413,7 +1416,7 @@ const inventoryTracker = new InventoryTracker(['apples', 'bananas']);
 inventoryTracker.requestItems();
 ```
 
-**Good:**
+**Tốt:**
 ```javascript
 class InventoryTracker {
   constructor(items, requester) {
@@ -1448,20 +1451,20 @@ class InventoryRequesterV2 {
   }
 }
 
-// By constructing our dependencies externally and injecting them, we can easily
-// substitute our request module for a fancy new one that uses WebSockets.
+// Bằng cách xây dựng các phụ thuộc ở ngoài và thêm chúng vào, chúng ta có thể
+// dễ dàng thay thế module request bằng một module mới lạ sử dụng WebSockets.
 const inventoryTracker = new InventoryTracker(['apples', 'bananas'], new InventoryRequesterV2());
 inventoryTracker.requestItems();
 ```
-**[⬆ back to top](#mục-lục)**
+**[⬆ về đầu trang](#mục-lục)**
 
-### Prefer ES2015/ES6 classes over ES5 plain functions
-It's very difficult to get readable class inheritance, construction, and method
-definitions for classical ES5 classes. If you need inheritance (and be aware
-that you might not), then prefer classes. However, prefer small functions over
-classes until you find yourself needing larger and more complex objects.
+### Ưu tiên lớp ES2015/ES6 hơn các chức năng thuần ES5
+Rất khó khăn để có thể đọc được lớp thừa kế, lớp khởi tạo, và các định nghĩa phương thức
+trong các lớp ES5 cổ điển. Nếu bạn cần kế thừa (và lưu ý rằng bạn có thể không),
+tốt hơn là nên sử dụng lớp. Tuy nhiên ưu tiên sử dụng những hàm nhỏ hơn là lớp cho
+đến khi bạn cần những đối tượng lớn và phức tạp hơn.
 
-**Bad:**
+**Không tốt:**
 ```javascript
 const Animal = function(age) {
   if (!(this instanceof Animal)) {
@@ -1500,7 +1503,7 @@ Human.prototype.constructor = Human;
 Human.prototype.speak = function speak() {};
 ```
 
-**Good:**
+**Tốt:**
 ```javascript
 class Animal {
   constructor(age) {
@@ -1528,17 +1531,17 @@ class Human extends Mammal {
   speak() { /* ... */ }
 }
 ```
-**[⬆ back to top](#mục-lục)**
+**[⬆ về đầu trang](#mục-lục)**
 
+### Sử dụng các hàm liên tiếp nhau
+Đây là một pattern rất hữu ích trong JavaScript và bạn thấy nó trong rất
+nhiều thư viện chẳng hạn như jQuery và Lodash. Nó cho phép code của bạn
+có tính truyền tải và ngắn gọn. Vì lý do đó, theo tôi, sử dụng phương pháp
+các hàm liên tiếp nhau và hãy xem code của bạn sẽ sạch sẽ như thế nào. Trong
+các hàm của lớp, đơn giản là trả về `this` ở cuối mỗi hàm, và bạn có thể xâu
+chuỗi các phương thức khác vào trong nó.
 
-### Use method chaining
-This pattern is very useful in JavaScript and you see it in many libraries such
-as jQuery and Lodash. It allows your code to be expressive, and less verbose.
-For that reason, I say, use method chaining and take a look at how clean your code
-will be. In your class functions, simply return `this` at the end of every function,
-and you can chain further class methods onto it.
-
-**Bad:**
+**Không tốt:**
 ```javascript
 class Car {
   constructor() {
@@ -1571,7 +1574,7 @@ car.setModel('F-150');
 car.save();
 ```
 
-**Good:**
+**Tốt:**
 ```javascript
 class Car {
   constructor() {
@@ -1582,25 +1585,25 @@ class Car {
 
   setMake(make) {
     this.make = make;
-    // NOTE: Returning this for chaining
+    // Ghi chú: Trả về this để xâu chuỗi các phương thức
     return this;
   }
 
   setModel(model) {
     this.model = model;
-    // NOTE: Returning this for chaining
+    // Ghi chú: Trả về this để xâu chuỗi các phương thức
     return this;
   }
 
   setColor(color) {
     this.color = color;
-    // NOTE: Returning this for chaining
+    // Ghi chú: Trả về this để xâu chuỗi các phương thức
     return this;
   }
 
   save() {
     console.log(this.make, this.model, this.color);
-    // NOTE: Returning this for chaining
+    // Ghi chú: Trả về this để xâu chuỗi các phương thức
     return this;
   }
 }
@@ -1611,27 +1614,27 @@ const car = new Car()
   .setModel('F-150')
   .save();
 ```
-**[⬆ back to top](#mục-lục)**
+**[⬆ về đầu trang](#mục-lục)**
 
-### Prefer composition over inheritance
-As stated famously in [*Design Patterns*](https://en.wikipedia.org/wiki/Design_Patterns) by the Gang of Four,
-you should prefer composition over inheritance where you can. There are lots of
-good reasons to use inheritance and lots of good reasons to use composition.
-The main point for this maxim is that if your mind instinctively goes for
-inheritance, try to think if composition could model your problem better. In some
-cases it can.
+### Ưu tiên thành phần hơn là kế thừa
+Như đã được nhấn mạnh nhiều trong [*Design Patterns*](https://en.wikipedia.org/wiki/Design_Patterns)
+của Gang of Four, bạn nên sử dụng cấu trúc thành phần hơn là thừa kế nếu có thể.
+Có rất nhiều lý do tốt để sử dụng kế thừa cũng như sử dụng thành phần.
+Điểm nhấn cho phương châm này đó là nếu tâm trí của bạn đi theo bản năng thừa kế,
+thử nghĩ nếu thành phần có thể mô hình vấn đề của bạn tốt hơn. Trong một số trường
+hợp nó có thể.
 
-You might be wondering then, "when should I use inheritance?" It
-depends on your problem at hand, but this is a decent list of when inheritance
-makes more sense than composition:
+Bạn có thể tự hỏi, "khi nào tôi nên sử dụng thừa kế?" Nó phụ thuộc vào
+vấn đề trong tầm tay của bạn, nhưng đây là một danh sách manh nha khi kế thừa
+có ý nghĩa hơn thành phần:
 
-1. Your inheritance represents an "is-a" relationship and not a "has-a"
-relationship (Human->Animal vs. User->UserDetails).
-2. You can reuse code from the base classes (Humans can move like all animals).
-3. You want to make global changes to derived classes by changing a base class.
-(Change the caloric expenditure of all animals when they move).
+1. Kế thừa của bạn đại diện cho mỗi quan hệ "is-a" và không có mỗi quan hệ "has-a"
+(Human->Animal vs. User->UserDetails).
+2. Bạn có thể sử dụng lại code từ lớp cơ bản (Humans có thể di chuyển giống tất cả Animals).
+3. Bạn muốn làm thay đổi toàn cục đến các lớp dẫn xuất bằng cách thay đổi lớp cơ bản.
+(Thay đổi lượng calo của tất cả animal khi chúng di chuyển)
 
-**Bad:**
+**Không tốt:**
 ```javascript
 class Employee {
   constructor(name, email) {
@@ -1642,7 +1645,8 @@ class Employee {
   // ...
 }
 
-// Bad because Employees "have" tax data. EmployeeTaxData is not a type of Employee
+// Không tốt bởi vì Employees "có" dữ liệu thuế.
+// EmployeeTaxData không phải là một loại của Employee
 class EmployeeTaxData extends Employee {
   constructor(ssn, salary) {
     super();
@@ -1654,7 +1658,7 @@ class EmployeeTaxData extends Employee {
 }
 ```
 
-**Good:**
+**Tốt:**
 ```javascript
 class EmployeeTaxData {
   constructor(ssn, salary) {
@@ -1677,7 +1681,7 @@ class Employee {
   // ...
 }
 ```
-**[⬆ back to top](#mục-lục)**
+**[⬆ về đầu trang](#mục-lục)**
 
 ## **Testing**
 Testing thì quan trọng hơn shipping. Nếu bạn không có test hoặc không đủ,
