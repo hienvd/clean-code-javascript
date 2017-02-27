@@ -943,48 +943,45 @@ cần phải tìm kiếm và thay đổi mỗi accessor trong codebase của b�
 
 **Không tốt:**
 ```javascript
-class BankAccount {
-  constructor() {
-    this.balance = 1000;
-  }
+function makeBankAccount() {
+  // ...
+
+  return {
+    balance: 0,
+    // ...
+  };
 }
 
-const bankAccount = new BankAccount();
-
-// Buy shoes...
-bankAccount.balance -= 100;
+const account = makeBankAccount();
+account.balance = 100;
 ```
 
 **Tốt:**
 ```javascript
-class BankAccount {
-  constructor(balance = 1000) {
-    this._balance = balance;
+function makeBankAccount() {
+  // this one is private
+  let balance = 0;
+
+  // Một "getter", thiết lập public thông qua đối tượng được trả về dưới đây
+  function getBalance() {
+    return balance;
   }
 
-  // Không cần phải thêm tiền tố `get` hay `set` để trở thành một getter hay setter
-  set balance(amount) {
-    if (this.verifyIfAmountCanBeSetted(amount)) {
-      this._balance = amount;
-    }
+  // Một "setter", thiết lập public thông qua đối tượng được trả về dưới đây
+  function setBalance(amount) {
+    // ... validate before updating the balance
+    balance = amount;
   }
 
-  get balance() {
-    return this._balance;
-  }
-
-  verifyIfAmountCanBeSetted(val) {
+  return {
     // ...
-  }
+    getBalance,
+    setBalance,
+  };
 }
 
-const bankAccount = new BankAccount();
-
-// Buy shoes...
-bankAccount.balance -= shoesPrice;
-
-// Get balance
-let balance = bankAccount.balance;
+const account = makeBankAccount();
+account.setBalance(100);
 
 ```
 **[⬆ về đầu trang](#mục-lục)**
