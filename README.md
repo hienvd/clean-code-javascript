@@ -8,12 +8,13 @@ Original Repository: [ryanmcdermott/clean-code-javascript](https://github.com/ry
   3. [Hàm](#hàm)
   4. [Đối tượng và Cấu trúc dữ liệu](#Đối-tượng-và-cấu-trúc-dữ-liệu)
   5. [Lớp](#lớp)
-  6. [Testing](#testing)
-  7. [Xử lí đồng thời](#xử-lí-đồng-thời)
-  8. [Xử lí lỗi](#xử-lí-lỗi)
-  9. [Định dạng](#Định-dạng)
-  10. [Viết chú thích](#viết-chú-thích)
-  11. [Các ngôn ngữ khác](#các-ngôn-ngữ-khác)
+  6. [SOLID](#SOLID)
+  7. [Testing](#testing)
+  8. [Xử lí đồng thời](#xử-lí-đồng-thời)
+  9. [Xử lí lỗi](#xử-lí-lỗi)
+  10. [Định dạng](#Định-dạng)
+  11. [Viết chú thích](#viết-chú-thích)
+  12. [Các ngôn ngữ khác](#các-ngôn-ngữ-khác)
 
 ## Giới thiệu
 ![Humorous image of software quality estimation as a count of how many expletives
