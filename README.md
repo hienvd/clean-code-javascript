@@ -1250,7 +1250,7 @@ class Employee {
 ```
 **[⬆ về đầu trang](#mục-lục)**
 
-## **SOLID**
+## **<span id='SOLID'>SOLID</span>**
 ### Nguyên lí đơn trách nhiệm (Single Responsibility Principle)
 Như đã được nói đến trong cuốn Clean Code, "Chỉ có thể thay đổi một lớp vì một lí
 do duy nhất". Thật là hấp dẫn để nhồi nhét nhiều chức năng vào cho một lớp, giống
