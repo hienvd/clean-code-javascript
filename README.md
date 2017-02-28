@@ -8,7 +8,7 @@ Original Repository: [ryanmcdermott/clean-code-javascript](https://github.com/ry
   3. [Hàm](#hàm)
   4. [Đối tượng và Cấu trúc dữ liệu](#Đối-tượng-và-cấu-trúc-dữ-liệu)
   5. [Lớp](#lớp)
-  6. [SOLID](#SOLID)
+  6. [SOLID](#solid)
   7. [Testing](#testing)
   8. [Xử lí đồng thời](#xử-lí-đồng-thời)
   9. [Xử lí lỗi](#xử-lí-lỗi)
@@ -1250,7 +1250,7 @@ class Employee {
 ```
 **[⬆ về đầu trang](#mục-lục)**
 
-## **<span id='SOLID'>SOLID</span>**
+## **SOLID**
 ### Nguyên lí đơn trách nhiệm (Single Responsibility Principle)
 Như đã được nói đến trong cuốn Clean Code, "Chỉ có thể thay đổi một lớp vì một lí
 do duy nhất". Thật là hấp dẫn để nhồi nhét nhiều chức năng vào cho một lớp, giống
